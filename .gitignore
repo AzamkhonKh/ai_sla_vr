@@ -5,4 +5,10 @@
 *.out
 *.gz
 *.fdb_latexmk
-.tex
+*.tex
+!index.tex
+*.bbl
+*.bcf
+*.blg
+*.xml
+
