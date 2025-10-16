@@ -6,9 +6,10 @@
 *.gz
 *.fdb_latexmk
 *.tex
-!index.tex
 *.bbl
 *.bcf
 *.blg
 *.xml
 
+!index.tex
+!index.pdf
