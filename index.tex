@@ -1,0 +1,192 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=0.75in}
+\usepackage{hyperref}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\setlist{nosep}
+\usepackage{float}
+\usepackage[style=numeric,sorting=none]{biblatex}
+\addbibresource{resources.bib}
+
+\title{\vspace{-1em}MundoVR: A Systems Engineering Approach to Gamified Second Language Acquisition with AI and VR\@ \vspace{-0.5em}}
+\author{Ashley NAKA (819029) \\ Jennifer AWOUNOU (819021) \\ Azamkhon Khudoyberdiev (819025)}
+\date{}
+
+\begin{document}
+
+\maketitle
+\vspace{-1.5em}
+
+\section*{Abstract}
+
+\paragraph{Motivation}
+Traditional language learning apps rely on rote memorization and fail to prepare learners for spontaneous real-world dialogue. Recent advances in LLMs and voice processing enable personalized, interactive systems that simulate authentic human conversation.
+
+\paragraph{Problem}
+The challenge is designing a robust, real-time system delivering high-quality, low-latency conversational experiences in immersive VR while remaining cost-effective and scalable. Key trade-offs involve balancing on-device and cloud computational resources, maintaining low latency for VR immersion, and ensuring system resilience under variable network conditions.
+
+\paragraph{Solution}
+We propose MundoVR, a hybrid AI architecture combining lightweight on-device AI (NLU, STT, embeddings) for rapid interactions with cloud-based LLMs for complex dialogues. The platform integrates STT, TTS, and phoneme-level analysis within a scalable microservices backend (Golang, Kubernetes), optimized for VR real-time constraints.
+
+\paragraph{Contribution}
+This work specifies a hybrid software architecture for real-time intelligent educational applications, addressing critical trade-offs between latency, computational cost, and AI-driven interaction quality through formal specification using UML diagrams and architectural patterns.
+
+\section*{System Specification Approach}
+
+We specify the MundoVR system using a multi-view architectural methodology, ensuring a comprehensive and standardized description.
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Modeling Language:} UML 2.5 notation following ISO/IEC/IEEE 42010 architectural description standards.
+    \item \textbf{Views:} We use a (1) Context Diagram to define system boundaries and external actors, a (2) Deployment Diagram to map components to infrastructure, and a (3) Sequence Diagram to detail key interaction flows.
+    \item \textbf{Decision Documentation:} Architecture Decision Records (ADRs) are used to capture key trade-offs, such as latency vs. quality, cost vs. performance, and on-device vs. cloud processing.
+\end{itemize}
+
+This approach ensures the systematic documentation of architectural choices critical to the hybrid AI system.
+
+\section*{Requirements Engineering}
+
+\subsection*{Domain and Stakeholders}
+
+MundoVR operates at the intersection of Second Language Acquisition (SLA), Artificial Intelligence (AI), and Virtual Reality (VR), providing a gamified, immersive environment for conversational practice with AI-driven virtual characters.
+
+\subsubsection*{User Personas}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{High School Student (Leila):} Preparing for language exams; needs structured lessons and grammar drills integrated into conversation.
+    \item \textbf{Business Professional (Mark):} Learning industry-specific jargon for international meetings; focuses on formal communication and negotiation scenarios.
+    \item \textbf{Casual Tourist (Alex):} Learning basic conversational phrases for travel; needs practical scenarios like ordering food and asking directions.
+\end{itemize}
+
+\subsection*{System Context and Interfaces}
+MundoVR employs a hybrid architecture that distributes workloads between on-device processing and cloud services to balance performance and cost. The system defines four key interfaces:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{User-VR Headset:} Voice commands and physical interactions within the VR environment.
+    \item \textbf{VR Headset-AI SDK:} Low-latency local connection for simple interactions (e.g., command acknowledgment).
+    \item \textbf{VR Headset-Cloud Platform:} Secure HTTPS API calls for complex conversational processing.
+    \item \textbf{Platform-Cloud AI:} Backend communication with LLM, STT, and TTS services.
+\end{itemize}
+
+\subsection*{Use Cases and Scenarios}
+The following scenarios are derived from the user stories to illustrate key system functionalities.
+
+\subsection*{Use Cases}
+Five key scenarios illustrate system functionality, derived from user personas:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{US1 (Exam Preparation):} High school student practices debate about environmental policies with an AI tutor to master vocabulary and arguments for oral exams.
+    \item \textbf{US2 (Business Negotiation):} Business professional simulates contract negotiations to practice formal language and industry-specific terminology.
+    \item \textbf{US3 (Travel Practice):} Casual tourist role-plays ordering meals at virtual restaurants to build confidence for travel.
+    \item \textbf{US4 (Pronunciation Clinic):} System identifies specific pronunciation errors and provides targeted drills for accent improvement.
+    \item \textbf{US5 (Adaptive Role-play):} AI characters react dynamically to learner choices, creating authentic and engaging conversations.
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{usecase_diagram.png}
+\caption{Use case diagram showing actor interactions with system functional requirements.}
+\end{figure}
+
+\subsection*{Functional Requirements}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{FR1:} The system shall transcribe user's spoken input into text in real-time.
+    \item \textbf{FR2:} The system shall generate contextually relevant responses from an AI character.
+    \item \textbf{FR3:} The system shall synthesize text responses into natural-sounding speech.
+    \item \textbf{FR4:} The system shall analyze user's speech for pronunciation accuracy.
+    \item \textbf{FR5:} The system shall adjust dialogue complexity based on user performance.
+    \item \textbf{FR6:} The system shall persist user profiles, progress, and conversation history.
+\end{itemize}
+
+\subsection*{Non-Functional Requirements}
+\begin{itemize}[leftmargin=*]
+    \item \textbf{NFR1 (Latency):} Two-tier response time for VR immersion:
+        \begin{itemize}
+            \item \textit{Tier 1:} On-device AI SDK responses < 200ms
+            \item \textit{Tier 2:} Full cloud loop (STT → LLM → TTS) < 1.5 seconds
+        \end{itemize}
+    \item \textbf{NFR2 (Scalability):} Support 10,000 concurrent users. Graceful degradation under peak load increases response time by up to 50\% while prioritizing core conversation features.
+    \item \textbf{NFR3 (Cost-Effectiveness):} At least 40\% of interactions handled by on-device AI SDK to minimize cloud processing costs during typical 15-minute sessions.
+\end{itemize}
+
+\section*{System Architecture}
+
+The hybrid architecture distributes workloads between on-device and cloud components to meet latency, scalability, and cost requirements.
+
+\subsection*{Context Diagram}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{contex_diagram.png}
+\caption{System context showing hybrid on-device/cloud architecture.}
+\end{figure}
+
+\subsection*{Service Architecture}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{service_architecture_diagram.png}
+\caption{Microservice components with data stores and message brokers.}
+\end{figure}
+
+\subsection*{Deployment Architecture}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.4\textwidth]{deployment_diagram.png}
+\caption{Containerized services in Kubernetes cluster with managed cloud resources.}
+\end{figure}
+
+\section*{Literature Review}
+
+\subsection*{VR and Immersive Technologies for Language Learning}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Schorr, I., et al. (2024)} \cite{schorr2024arreview} --- Systematic review of 40 studies (2016-2023) validating VR for contextual language learning and vocabulary acquisition.
+    
+    \item \textbf{Oxford University Press (2025)} \cite{eltj2025vr} --- Pedagogical frameworks for VR-based SLA, informing scenario design and dialogue adaptation.
+    
+    \item \textbf{Frontiers in Virtual Reality (2025)} \cite{frontiers2025comparison} --- AR vs. VR comparison demonstrating enhanced retention in VR, supporting our VR-focused approach.
+\end{itemize}
+
+\subsection*{AI Integration in Educational VR}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Adithya, T. G., et al. (2024)} \cite{adithya2024vrtutoring} --- GPT-based AI tutoring with Unity 3D VR, providing technical precedent for our hybrid architecture.
+    
+    \item \textbf{Godwin-Jones, B. (2024)} \cite{godwinjones2024vrai} --- Analysis of AI/VR convergence highlighting on-device vs. cloud processing balance.
+    
+    \item \textbf{Zhu, Z., et al. (2025)} \cite{zhu2025llmpedagogical} --- CHI 2025 study on LLM-powered pedagogical agents in VR, validating adaptive role-switching and dialogue management.
+    
+    \item \textbf{Vallance, M. (2024)} \cite{vallance2024heritage} --- AI-enabled NPCs for educational VR, informing on-device AI SDK and cloud LLM integration strategy.
+    
+    \item \textbf{IEEE VRW (2025)} \cite{ieee2025japanese} --- Parallel implementation of AI-driven Japanese learning in VR with contextualized conversations and adaptive task complexity.
+\end{itemize}
+
+\subsection*{Conversational AI and Chatbots in Education}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Kuhail, M. A., et al. (2023)} \cite{kuhail2023chatbots} --- Systematic review of 36 educational chatbot implementations showing improved learning outcomes with personalized approaches, informing our AI character design.
+    
+    \item \textbf{Velazquez-Garcia, L., et al. (2024)} \cite{velazquez2024gamification} --- AI integration in educational gamification, providing insights for adaptive content delivery and engagement mechanics.
+\end{itemize}
+
+\subsection*{Second Language Acquisition Theory}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Krashen, S. D. (1982)} \cite{krashen1982principles} --- Comprehensible Input hypothesis (i+1) informs dialogue difficulty adaptation; Affective Filter hypothesis guides low-pressure environment design.
+    
+    \item \textbf{Long, M. H. (1996)} \cite{long1996input} --- Interaction Hypothesis validates conversational interaction focus and negotiation of meaning in dialogue design.
+    
+    \item \textbf{Swain, M. (1995)} \cite{swain1995output} --- Output Hypothesis supports active speech production and pronunciation analysis (FR4).
+    
+    \item \textbf{Ellis, R. (2008)} \cite{ellis2008principles} --- Ten principles of instructed SLA provide framework for scenario design and feedback mechanisms.
+    
+    \item \textbf{Gass, S. M. \& Selinker, L. (2013)} \cite{gass2013sla} --- Comprehensive SLA overview establishing theoretical foundation for input, interaction, and output integration.
+    
+    \item \textbf{VanPatten, B. (2017)} \cite{vanpatten2017processing} --- Processing Instruction theory guides structured input presentation for form-meaning connections.
+\end{itemize}
+
+\printbibliography
+
+\end{document}
