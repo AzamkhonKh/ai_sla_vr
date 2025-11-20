@@ -43,7 +43,7 @@ Second Language Acquisition (SLA) research consistently demonstrates that authen
 
 Virtual Reality technology offers unique affordances for language learning: presence (feeling of ``being there''), embodiment (physical interaction), and contextual learning (situated cognition). Studies show VR environments improve vocabulary retention by 35-50\% compared to traditional methods \cite{schorr2024arreview}, while reducing learner anxiety through safe, judgment-free practice spaces \cite{cabero2020learning}.
 
-The convergence of these technologies---AI-driven dialogue, voice processing, and immersive VR---creates the possibility of realistic conversational practice systems. However, integrating them poses significant software engineering challenges: real-time AI inference must maintain VR immersion (requiring <100ms response for simple interactions), handle complex natural language understanding within 1.5 seconds, scale to thousands of concurrent users, and remain cost-effective.
+The convergence of these technologies---AI-driven dialogue, voice processing, and immersive VR---creates the possibility of realistic conversational practice systems. However, integrating them poses significant software engineering challenges: real-time AI inference must maintain VR immersion (requiring $<$100ms response for simple interactions), handle complex natural language understanding within 1.5 seconds, scale to thousands of concurrent users, and remain cost-effective.
 
 \subsection*{1.2 Problem Statement}
 
@@ -79,11 +79,11 @@ Current AI-VR language learning systems face three critical limitations:
 This work makes three primary contributions:
 
 \begin{itemize}[leftmargin=*]
-    \item \textbf{Hybrid Architecture Design:} A formally specified microservices architecture distributing workloads between on-device AI (simple interactions <200ms) and cloud services (complex dialogue <1.5s), achieving 10K concurrent users at <\$0.10 per session.
+    \item \textbf{Hybrid Architecture Design:} A formally specified microservices architecture distributing workloads between on-device AI (simple interactions $<$200ms) and cloud services (complex dialogue $<$1.5s), achieving 10K concurrent users at $<$\$0.10 per session.
     
     \item \textbf{SysML Specification Framework:} Complete architectural documentation using SysML 2.0 with four viewpoints (Requirements, Structure, Behavior, Parametric) across four abstraction levels, providing reusable patterns for AI-VR educational systems.
     
-    \item \textbf{Deployment and Evaluation:} On-premises deployment using open-source LLMs (Qwen2.5 72B, Mistral Large 2 123B) with quantitative performance analysis (latency p99 <1.5s, 99.5\% availability, 12-month operational data).
+    \item \textbf{Deployment and Evaluation:} On-premises deployment using open-source LLMs (Qwen2.5 72B, Mistral Large 2 123B) with quantitative performance analysis (latency p99 $<$1.5s, 99.5\% availability, 12-month operational data).
 \end{itemize}
 
 \section*{2. Related Work}
@@ -186,14 +186,14 @@ Five key scenarios illustrate system functionality, derived from user personas:
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=0.65\textwidth]{figures/01_requirements/level_1/sysml-usecase-01-interactions.png}
+\includegraphics[width=0.65\textwidth,height=0.5\textheight,keepaspectratio]{figures/01_requirements/level_1/sysml-usecase-01-interactions.png}
 \caption{SysML Use Case Diagram (Level 1): Detailed interaction flows for key use cases. Shows relationships (include, extend) between Practice Conversation (UC1), Analyze Pronunciation (UC2), Adjust Difficulty (UC3), Select Scenario (UC4), and Track Progress (UC5). Actors: Student, Professional, Tourist, Cloud LLM, Analytics System.}
 \label{fig:usecase-interactions}
 \end{figure}
 
 \subsection*{Functional Requirements}
 \begin{itemize}[leftmargin=*]
-    \item \textbf{FR1:} The system shall perform streaming STT with >90\% accuracy.
+    \item \textbf{FR1:} The system shall perform streaming STT with $>$90\% accuracy.
     \item \textbf{FR2:} The system shall generate LLM-based dialogue constrained by scenario graphs.
     \item \textbf{FR3:} The system shall synthesize natural TTS with appropriate prosody.
     \item \textbf{FR4:} The system shall provide phoneme-level pronunciation analysis.
@@ -205,8 +205,8 @@ Five key scenarios illustrate system functionality, derived from user personas:
 \begin{itemize}[leftmargin=*]
     \item \textbf{NFR1 (Latency):} Two-tier response time for VR immersion:
         \begin{itemize}
-            \item \textit{Tier 1:} On-device AI SDK responses < 200ms
-            \item \textit{Tier 2:} Full cloud loop (STT → LLM → TTS) < 1.5 seconds
+            \item \textit{Tier 1:} On-device AI SDK responses $<$ 200ms
+            \item \textit{Tier 2:} Full cloud loop (STT → LLM → TTS) $<$ 1.5 seconds
         \end{itemize}
     \item \textbf{NFR2 (Scalability):} Support 10,000 concurrent users with graceful degradation under peak load.
     \item \textbf{NFR3 (Reliability):} 99.5\% system uptime.
@@ -267,7 +267,7 @@ The system employs a \textbf{hybrid microservices architecture} with \textbf{edg
 
 \textit{Technical Factors:}
 \begin{itemize}[leftmargin=*]
-    \item \textbf{Latency Optimization:} On-device NLU SDK handles latency-critical simple interactions (<200ms: wake words, menu navigation, gesture confirmation), while cloud handles complex dialogue generation (800-1200ms LLM inference).
+    \item \textbf{Latency Optimization:} On-device NLU SDK handles latency-critical simple interactions ($<$200ms: wake words, menu navigation, gesture confirmation), while cloud handles complex dialogue generation (800-1200ms LLM inference).
     \item \textbf{Minimized Data Transfer:} On-device speech preprocessing (Voice Activity Detection, noise suppression, feature extraction) reduces bandwidth from 1.4 Mbps (raw audio) to 50 kbps (compressed features), cutting network costs by 96\%.
     \item \textbf{Model Flexibility:} Cloud-based LLMs enable rapid experimentation (Qwen2.5 72B $\rightarrow$ Mistral Large 2 123B) without client-side updates. A/B testing different models in production becomes trivial.
     \item \textbf{Scalability:} Cloud resources scale elastically (15-50 pods) during peak hours (1900-2100 UTC), while on-device components remain constant. Kubernetes HPA adjusts replicas based on queue depth.
@@ -307,7 +307,7 @@ The system employs a \textbf{hybrid microservices architecture} with \textbf{edg
             \item Single point of failure: Any cloud outage immediately affects all users. 99.5\% SLA allows 3.6h/month downtime.
             \item Cloud API costs: Commercial LLM APIs (\$0.01-0.03 per request) at 50 turns/session = \$0.50-1.50 per session, unsustainable at scale.
         \end{itemize}
-    \item \textbf{Rejection Reason:} Latency and cost constraints incompatible with immersive VR requirements and target pricing (<\$0.10/session).
+    \item \textbf{Rejection Reason:} Latency and cost constraints incompatible with immersive VR requirements and target pricing ($<$\$0.10/session).
 \end{itemize}
 
 \textit{Alternative 3: Federated Learning with Local Models}
@@ -349,7 +349,7 @@ The system employs a \textbf{hybrid microservices architecture} with \textbf{edg
 
 \subsection*{System Context Diagram}
 
-The system context diagram illustrates MundoVR's position within the broader ecosystem. The hybrid architecture distinguishes between on-device processing (for low-latency operations: < 200ms) and cloud services (for complex AI workloads: < 1.5s total latency). VR clients interact through a unified API gateway with three primary service tiers: STT/TTS layer (Whisper ASR, Piper TTS), Conversation Intelligence layer (LLM orchestration, context management), and Scenario Management layer (role-play scenarios, adaptive difficulty).
+The system context diagram illustrates MundoVR's position within the broader ecosystem. The hybrid architecture distinguishes between on-device processing (for low-latency operations: $<$ 200ms) and cloud services (for complex AI workloads: $<$ 1.5s total latency). VR clients interact through a unified API gateway with three primary service tiers: STT/TTS layer (Whisper ASR, Piper TTS), Conversation Intelligence layer (LLM orchestration, context management), and Scenario Management layer (role-play scenarios, adaptive difficulty).
 
 The system boundary encompasses:
 \begin{itemize}[leftmargin=*]
@@ -362,7 +362,7 @@ The system boundary encompasses:
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.65\textwidth]{figures/01_requirements/level_0/sysml-req-00-overview.png}
-\caption{SysML Requirements Diagram (Level 0): Complete traceability from research questions to implementation. Main RQ decomposed into 3 sub-RQs (RQ1: microservices, RQ2: AI integration, RQ3: VR optimization); 6 Functional Requirements (FR1: STT >90\%, FR2: LLM dialogue, FR3: TTS prosody, FR4: pronunciation, FR5: adaptive difficulty, FR6: user profiles); 5 Non-Functional Requirements (NFR1: latency p99 $\leq$1.5s, NFR2: 10K users, NFR3: 99.5\% uptime, NFR4: 12-month retention, NFR5: TLS 1.3/GDPR). Traceability: RQ $\rightarrow$ FR/NFR $\Rightarrow$ Components.}
+\caption{SysML Requirements Diagram (Level 0): Complete traceability from research questions to implementation. Main RQ decomposed into 3 sub-RQs (RQ1: microservices, RQ2: AI integration, RQ3: VR optimization); 6 Functional Requirements (FR1: STT $>$90\%, FR2: LLM dialogue, FR3: TTS prosody, FR4: pronunciation, FR5: adaptive difficulty, FR6: user profiles); 5 Non-Functional Requirements (NFR1: latency p99 $\leq$1.5s, NFR2: 10K users, NFR3: 99.5\% uptime, NFR4: 12-month retention, NFR5: TLS 1.3/GDPR). Traceability: RQ $\rightarrow$ FR/NFR $\Rightarrow$ Components.}
 \label{fig:requirements}
 \end{figure}
 
@@ -377,7 +377,7 @@ The architecture comprises ten specialized services, each responsible for distin
     
     \item \textbf{Session Management Service (Port 8082):} Maintains user session state (in-progress conversations, current scenario, learning objectives), coordinates state synchronization between VR client and backend, handles session persistence and recovery.
     
-    \item \textbf{Speech-to-Text Service (Port 8083):} Integrates Whisper ASR model for streaming speech recognition with >90\% accuracy. Handles audio buffer management, speaker diarization, and language detection.
+    \item \textbf{Speech-to-Text Service (Port 8083):} Integrates Whisper ASR model for streaming speech recognition with $>$90\% accuracy. Handles audio buffer management, speaker diarization, and language detection.
     
     \item \textbf{Conversation Service (Port 8084):} Orchestrates dialogue generation using cloud LLM (GPT-4), manages conversation context (sliding window of 20 recent exchanges), enforces scenario constraints (topic, difficulty level), and generates pedagologically aligned responses.
     
@@ -450,8 +450,8 @@ The conversation flow state machine captures user interaction progression throug
     \item \textbf{Processing:} Speech buffer is transmitted to backend Conversation Service. Three parallel operations execute:
         \begin{itemize}
             \item STT Service converts audio stream to text (Whisper ASR, latency: 200-500ms)
-            \item Session Management Service retrieves current conversation context (latency: <50ms from Redis cache)
-            \item Scenario Service loads active scenario constraints (latency: <50ms)
+            \item Session Management Service retrieves current conversation context (latency: $<$50ms from Redis cache)
+            \item Scenario Service loads active scenario constraints (latency: $<$50ms)
         \end{itemize}
     
     \item \textbf{Dialogue Generation:} Cloud LLM generates contextually appropriate, pedagogically aligned response (latency: 800-1200ms depending on model). The Conversation Service enforces scenario constraints: vocabulary level, topic boundaries, grammatical complexity. If LLM violates constraints, response is regenerated or scenario adjusted.
@@ -465,12 +465,12 @@ The conversation flow state machine captures user interaction progression throug
 
 \textbf{Latency Requirements by Stage:}
 \begin{itemize}[leftmargin=*]
-    \item Idle → Listening: <50ms (on-device, hardware latency)
-    \item Listening → Processing: <100ms (local buffering)
-    \item Processing (STT + Context): <300ms (local execution + network)
+    \item Idle → Listening: $<$50ms (on-device, hardware latency)
+    \item Listening → Processing: $<$100ms (local buffering)
+    \item Processing (STT + Context): $<$300ms (local execution + network)
     \item Dialogue Generation: 800-1200ms (cloud LLM, parallelizable steps)
     \item TTS Synthesis: 200-300ms (parallel with LLM response)
-    \item Total latency p99: <1.5 seconds (cumulative across all stages)
+    \item Total latency p99: $<$1.5 seconds (cumulative across all stages)
 \end{itemize}
 
 \begin{figure}[H]
@@ -545,17 +545,17 @@ Resource usage is optimized through dynamic autoscaling and efficient hardware a
 \midrule
 \textbf{Ingress} & HAProxy & TLS 1.3, 10Gbps Firewall & 1000 req/s limit \\
 \midrule
-\textbf{Compute} & CPU Nodes & AMD EPYC 7763, 512GB RAM & HPA (CPU > 70\%) \\
+\textbf{Compute} & CPU Nodes & AMD EPYC 7763, 512GB RAM & HPA (CPU $>$ 70\%) \\
 (General) & Microservices & 2-4 vCPU, 4-8GB RAM & Min 2-5 replicas \\
 \midrule
 \textbf{Compute} & GPU Nodes & NVIDIA A100 (40/80GB) & Queue-based HPA \\
 (AI) & STT/LLM & Whisper (T4), Qwen/Mistral & Dynamic Batching \\
 \midrule
 \textbf{Storage} & PostgreSQL & 2TB NVMe, Primary+Replica & RPO 1h, RTO 4h \\
- & Redis & 96GB Cluster, AOF+RDB & <1ms latency \\
+ & Redis & 96GB Cluster, AOF+RDB & $<$1ms latency \\
  & Milvus & 50GB Vector Index & 10M vectors \\
 \midrule
-\textbf{Monitor} & Prometheus & 15s scrape, 30d retention & Alert: p99 > 2s \\
+\textbf{Monitor} & Prometheus & 15s scrape, 30d retention & Alert: p99 $>$ 2s \\
  & Jaeger & 10\% sampling rate & End-to-end trace \\
 \bottomrule
 \end{tabularx}
@@ -601,7 +601,7 @@ Resource usage is optimized through dynamic autoscaling and efficient hardware a
 \begin{figure}[H]
 \centering
 \includegraphics[width=0.7\textwidth]{figures/02_structure/level_2/sysml-deployment-02-local.png}
-\caption{SysML Deployment Diagram (Level 2): On-premises infrastructure with physical hardware topology. Data center: 42U rack, $2\times$PDU, UPS 30min, liquid cooling 45°C. Network: $2\times$HAProxy (10Gbps, TLS 1.3, VRRP failover), Cisco firewall (10Gbps), 10Gbps fiber. Kubernetes: $4\times$Dell R750 CPU (EPYC 7763 @ 64c/512GB/8TB NVMe/280W), $2\times$DGX A100 GPU ($8\times$A100 80GB/2496 TFLOPS/2TB RAM/30TB NVMe/6.5kW). Pods: API Gateway (15/30c), Conversation (20/80c), STT ($2\times$A100/100 req/s), LLM-Qwen2.5 ($4\times$A100/850-1100ms/batch 32), LLM-Mistral ($8\times$A100/1400-1800ms/batch 16), TTS ($1\times$A100/200-300ms). Storage: PostgreSQL (3 nodes: 1 primary+2 replicas, 2TB NVMe, <1s lag), Redis (6 nodes: 3+3, 96GB, AOF+RDB), Milvus (50GB, 10M vectors). Observability: Prometheus (30d/100GB), Grafana (12 dashboards), Jaeger (10\% sampling). Network: 10Gbps Ethernet, NVLink 600GB/s GPU. Power: 100-200kW (GPU 13kW each, CPU 1.5kW each, network 5kW, storage 8kW).}
+\caption{SysML Deployment Diagram (Level 2): On-premises infrastructure with physical hardware topology. Data center: 42U rack, $2\times$PDU, UPS 30min, liquid cooling 45°C. Network: $2\times$HAProxy (10Gbps, TLS 1.3, VRRP failover), Cisco firewall (10Gbps), 10Gbps fiber. Kubernetes: $4\times$Dell R750 CPU (EPYC 7763 @ 64c/512GB/8TB NVMe/280W), $2\times$DGX A100 GPU ($8\times$A100 80GB/2496 TFLOPS/2TB RAM/30TB NVMe/6.5kW). Pods: API Gateway (15/30c), Conversation (20/80c), STT ($2\times$A100/100 req/s), LLM-Qwen2.5 ($4\times$A100/850-1100ms/batch 32), LLM-Mistral ($8\times$A100/1400-1800ms/batch 16), TTS ($1\times$A100/200-300ms). Storage: PostgreSQL (3 nodes: 1 primary+2 replicas, 2TB NVMe, $<$1s lag), Redis (6 nodes: 3+3, 96GB, AOF+RDB), Milvus (50GB, 10M vectors). Observability: Prometheus (30d/100GB), Grafana (12 dashboards), Jaeger (10\% sampling). Network: 10Gbps Ethernet, NVLink 600GB/s GPU. Power: 100-200kW (GPU 13kW each, CPU 1.5kW each, network 5kW, storage 8kW).}
 \label{fig:deployment-local}
 \end{figure}
 
