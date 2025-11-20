@@ -1,0 +1,51 @@
+graph TB
+    subgraph System["<<system>> MundoVR Platform"]
+        UC1["<<use case def>><br/>UC1: Practice Conversation<br/>---<br/>Precondition: User logged in<br/>Postcondition: Session recorded"]
+        UC2["<<use case def>><br/>UC2: Analyze Pronunciation<br/>---<br/>Precondition: Audio recorded<br/>Postcondition: Feedback provided"]
+        UC3["<<use case def>><br/>UC3: Adjust Difficulty<br/>---<br/>Precondition: Performance data available<br/>Postcondition: Scenario updated"]
+        UC4["<<use case def>><br/>UC4: Select Scenario<br/>---<br/>Precondition: User profile loaded<br/>Postcondition: Scenario activated"]
+        UC5["<<use case def>><br/>UC5: Track Progress<br/>---<br/>Precondition: Session complete<br/>Postcondition: Metrics updated"]
+    end
+    
+    Student["<<actor def>><br/>Language Learner<br/>---<br/>High school student<br/>preparing for exams"]
+    Professional["<<actor def>><br/>Business Professional<br/>---<br/>Learning industry jargon<br/>for meetings"]
+    Tourist["<<actor def>><br/>Casual Tourist<br/>---<br/>Learning basic phrases<br/>for travel"]
+    
+    LLM["<<actor def>><br/>Cloud LLM<br/>---<br/>External AI service<br/>GPT-4"]
+    Analytics["<<actor def>><br/>Analytics System<br/>---<br/>Learning metrics<br/>dashboard"]
+    
+    Student --> UC1
+    Professional --> UC1
+    Tourist --> UC1
+    
+    Student --> UC2
+    Professional --> UC2
+    
+    Student --> UC3
+    Tourist --> UC3
+    
+    Student --> UC4
+    Professional --> UC4
+    Tourist --> UC4
+    
+    Student --> UC5
+    Professional --> UC5
+    
+    UC1 -.->|<<include>>| UC4
+    UC1 -.->|<<extend>>| UC2
+    UC1 -.->|<<extend>>| UC3
+    UC1 -->|<<communicate>>| LLM
+    UC2 -->|<<communicate>>| Analytics
+    UC5 -->|<<communicate>>| Analytics
+    
+    style System fill:#e8f4f8,stroke:#006994,stroke-width:3px
+    style UC1 fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style UC2 fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px
+    style UC3 fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style UC4 fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style UC5 fill:#ffebee,stroke:#c62828,stroke-width:2px
+    style Student fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    style Professional fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    style Tourist fill:#fce4ec,stroke:#880e4f,stroke-width:2px
+    style LLM fill:#e0f2f1,stroke:#004d40,stroke-width:2px
+    style Analytics fill:#e0f2f1,stroke:#004d40,stroke-width:2px

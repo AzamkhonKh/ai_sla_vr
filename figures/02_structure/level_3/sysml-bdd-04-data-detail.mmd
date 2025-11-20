@@ -1,0 +1,35 @@
+graph TB
+    subgraph DataLayer["<<part def>> Data Layer"]
+        subgraph PostgresBlock["<<part def>> PostgreSQL Cluster"]
+            PGPrimary["<<part>> Primary Node<br/>Storage: 2TB NVMe<br/>RAM: 64GB<br/>Connections: 500"]
+            PGReplica["<<part>> Read Replica<br/>Lag: <1s<br/>Async replication"]
+            PGPrimary --> PGReplica
+        end
+        
+        subgraph RedisBlock["<<part def>> Redis Cluster"]
+            RedisNode1["<<part>> Node 1 (Primary)<br/>Memory: 32GB<br/>Keys: ~1M"]
+            RedisNode2["<<part>> Node 2 (Replica)<br/>Sync: AOF<br/>Snapshot: 1h"]
+            RedisNode1 --> RedisNode2
+        end
+        
+        subgraph MilvusBlock["<<part def>> Milvus Vector DB"]
+            VectorIndex["<<part>> HNSW Index<br/>Dimensions: 1536<br/>Vectors: 10M<br/>Storage: 50GB"]
+            QueryEngine["<<part>> Query Engine<br/>Latency: <50ms<br/>Throughput: 1K qps"]
+            VectorIndex --> QueryEngine
+        end
+    end
+    
+    subgraph Storage["<<constraint def>> Storage Requirements"]
+        Capacity["Total: 4TB NVMe<br/><br/>Breakdown:<br/>- PostgreSQL: 2TB<br/>- Models: 50GB<br/>- Milvus: 50GB<br/>- Redis: 64GB (RAM)<br/>- Logs: 100GB<br/>- Reserve: 1.7TB"]
+        
+        Performance["IOPS: 500K<br/>Sequential: 7 GB/s<br/>Random 4K: 1M IOPS"]
+    end
+    
+    DataLayer -.stored on.-> Capacity
+    DataLayer -.requires.-> Performance
+    
+    style DataLayer fill:#ffebee,stroke:#c62828,stroke-width:4px
+    style PostgresBlock fill:#e3f2fd,stroke:#1565c0,stroke-width:2px
+    style RedisBlock fill:#fff9c4,stroke:#f57f17,stroke-width:2px
+    style MilvusBlock fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px
+    style Storage fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px

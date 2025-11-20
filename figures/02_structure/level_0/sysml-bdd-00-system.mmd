@@ -1,0 +1,33 @@
+graph TB
+    subgraph MundoVR["<<system>> MundoVR Platform"]
+        VRClient["<<part def>> VR Client Subsystem<br/><br/>Responsibilities:<br/>- User interaction<br/>- Voice I/O<br/>- Rendering<br/><br/>Details: See BDD-01"]
+        
+        Backend["<<part def>> Backend Platform<br/><br/>Responsibilities:<br/>- Request processing<br/>- AI orchestration<br/>- Data management<br/><br/>Details: See BDD-02"]
+        
+        AIEngine["<<part def>> AI Engine<br/><br/>Responsibilities:<br/>- Speech processing<br/>- Dialogue generation<br/>- Voice synthesis<br/><br/>Details: See BDD-03"]
+        
+        DataLayer["<<part def>> Data Layer<br/><br/>Responsibilities:<br/>- Persistence<br/>- Caching<br/>- Vector search<br/><br/>Details: See BDD-04"]
+    end
+    
+    subgraph Constraints["<<constraint def>> System Constraints"]
+        Latency["Latency: p99 ≤ 1.5s<br/>See PAR-03"]
+        Cost["Cost: ≤ €2,500/month<br/>See PAR-03"]
+        Hardware["Hardware: 4×A100<br/>See PAR-03"]
+    end
+    
+    VRClient -->|HTTP/2| Backend
+    Backend -->|gRPC| AIEngine
+    Backend -->|SQL/Redis| DataLayer
+    AIEngine -.inference.-> Backend
+    
+    VRClient -.realizes.-> Latency
+    Backend -.realizes.-> Latency
+    AIEngine -.realizes.-> Hardware
+    Backend -.realizes.-> Cost
+    
+    style MundoVR fill:#e3f2fd,stroke:#0d47a1,stroke-width:4px
+    style VRClient fill:#fff9c4,stroke:#f57f17,stroke-width:3px
+    style Backend fill:#e8f5e9,stroke:#2e7d32,stroke-width:3px
+    style AIEngine fill:#f3e5f5,stroke:#6a1b9a,stroke-width:3px
+    style DataLayer fill:#ffebee,stroke:#c62828,stroke-width:3px
+    style Constraints fill:#fff3e0,stroke:#ef6c00,stroke-width:2px

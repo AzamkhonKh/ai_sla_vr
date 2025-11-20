@@ -1,0 +1,18 @@
+graph TB
+    subgraph "ChatLearner System"
+        direction TB
+        A["🌍 Frontend<br/>Voice UI & Web"]
+        B["🔧 Backend<br/>API & Services"]
+        C["🧠 AI Engine<br/>LLM & Processing"]
+        D["💾 Database<br/>Data Storage"]
+    end
+    
+    A -.->|Voice Input| B
+    B -.->|LLM Query| C
+    B -.->|Data Ops| D
+    C -.->|Response| A
+    
+    style A fill:#bbdefb
+    style B fill:#ffe0b2
+    style C fill:#c8e6c9
+    style D fill:#f8bbd0

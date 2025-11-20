@@ -1,0 +1,13 @@
+sequenceDiagram
+    participant U as User
+    participant B as Backend
+    participant AI as AI Engine
+    participant DB as Database
+    
+    U->>B: 1. Send voice input
+    B->>AI: 2. Process STT
+    AI->>AI: 3. Generate response
+    B->>DB: 4. Store interaction
+    B->>U: 5. Send TTS response
+    
+    Note over U,DB: Complete conversation cycle

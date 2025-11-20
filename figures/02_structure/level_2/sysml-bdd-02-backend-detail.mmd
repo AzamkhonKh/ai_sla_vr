@@ -1,0 +1,13 @@
+graph LR
+    A["Auth Service"] --> B["API Gateway"]
+    B --> C["Voice Processor"]
+    C --> D["LLM Service"]
+    D --> E["Response Builder"]
+    E --> F["Database"]
+    
+    style A fill:#e1bee7
+    style B fill:#fff9c4
+    style C fill:#f1f8e9
+    style D fill:#ffccbc
+    style E fill:#ffe082
+    style F fill:#b3e5fc

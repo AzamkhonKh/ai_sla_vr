@@ -1,0 +1,20 @@
+graph TB
+    subgraph System["ChatLearner System"]
+        Frontend["Frontend<br/>VR UI"]
+        API["API Gateway"]
+        Services["Core Services"]
+        AI["AI Engine"]
+        DB["Database"]
+    end
+    
+    Frontend --> API
+    API --> Services
+    Services --> AI
+    Services --> DB
+    AI --> DB
+    
+    style Frontend fill:#bbdefb
+    style API fill:#fff9c4
+    style Services fill:#ffe0b2
+    style AI fill:#c8e6c9
+    style DB fill:#f8bbd0

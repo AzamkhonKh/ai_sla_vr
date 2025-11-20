@@ -1,0 +1,17 @@
+graph TB
+    subgraph "AI Engine"
+        A["Voice Input Processor<br/>STT: Whisper"]
+        B["Language Model<br/>GPT-4o / Llama 3.1"]
+        C["Response Generator<br/>TTS: Neural Vocoder"]
+        D["Conversation State<br/>Context Manager"]
+    end
+    
+    A --> B
+    B --> D
+    D --> C
+    B -.->|context| D
+    
+    style A fill:#fff9c4
+    style B fill:#ffccbc
+    style C fill:#ffe082
+    style D fill:#c8e6c9

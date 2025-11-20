@@ -1,0 +1,77 @@
+sequenceDiagram
+    participant User as <<actor>><br/>User
+    participant VR as <<part>><br/>VR Client
+    participant Gateway as <<part>><br/>API Gateway
+    participant Session as <<part>><br/>Session Mgmt
+    participant STT as <<part>><br/>STT Service
+    participant Conv as <<part>><br/>Conversation Service
+    participant LLM as <<actor>><br/>Cloud LLM
+    participant TTS as <<part>><br/>TTS Service
+    participant Cache as <<part>><br/>Redis Cache
+    
+    Note over User,Cache: Happy Path: Single Conversation Turn<br/>Target Latency: <1.5s (p99)
+    
+    User->>VR: Press microphone button
+    activate VR
+    VR->>VR: Start audio capture (VAD)
+    Note right of VR: On-device<br/>0-30s recording
+    
+    User->>VR: Speak: "Ich möchte einen Tisch reservieren"
+    VR->>VR: Buffer audio (20KB chunks)
+    User->>VR: Release button / silence detected
+    
+    VR->>Gateway: POST /api/v1/conversation<br/>{audio: base64, sessionId}
+    activate Gateway
+    Note right of Gateway: TLS 1.3<br/>JWT validation
+    Gateway->>Gateway: Authenticate & rate limit
+    Gateway->>Session: GET /session/{id}
+    activate Session
+    Session->>Cache: GET session:{id}
+    activate Cache
+    Cache-->>Session: {context, scenario, userId}
+    deactivate Cache
+    Session-->>Gateway: Session context
+    deactivate Session
+    
+    Gateway->>STT: gRPC Transcribe(audio)
+    activate STT
+    Note right of STT: Whisper-base<br/>200-500ms
+    STT->>STT: Convert audio to text
+    STT->>Cache: Check cache: audio_hash
+    Cache-->>STT: Cache miss
+    STT-->>Gateway: {text: "Ich möchte...", confidence: 0.95}
+    deactivate STT
+    
+    Gateway->>Conv: gRPC GenerateResponse(text, context)
+    activate Conv
+    Conv->>Cache: GET context:{sessionId}
+    Cache-->>Conv: Last 20 messages
+    Conv->>Conv: Build prompt with scenario constraints
+    Conv->>LLM: POST /chat/completions<br/>{messages, temperature: 0.7}
+    activate LLM
+    Note right of LLM: GPT-4<br/>800-1200ms
+    LLM-->>Conv: "Gerne! Für wieviele Personen?"
+    deactivate LLM
+    Conv->>Conv: Validate scenario constraints
+    Conv->>Cache: SET context:{sessionId} (TTL: 24h)
+    Conv-->>Gateway: {response: "Gerne!...", emotion: "friendly"}
+    deactivate Conv
+    
+    Gateway->>TTS: gRPC Synthesize(text, emotion)
+    activate TTS
+    Note right of TTS: Piper TTS<br/>200-300ms
+    TTS->>Cache: Check cache: text_hash
+    Cache-->>TTS: Cache miss
+    TTS->>TTS: Generate audio with prosody
+    TTS-->>Gateway: {audio: Stream<bytes>, phonemes: [...]}
+    deactivate TTS
+    
+    Gateway-->>VR: {audio: base64, text: "...", latency: 1.2s}
+    deactivate Gateway
+    
+    VR->>VR: Decode audio & sync animation
+    VR->>User: Play audio via spatial speakers
+    Note right of VR: Lip-sync using<br/>phoneme timings
+    deactivate VR
+    
+    Note over User,Cache: Total latency: 1.2s (within p99 target)

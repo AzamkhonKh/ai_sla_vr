@@ -1,0 +1,88 @@
+graph LR
+    subgraph CoreServiceBlock["<<part def>> Core Services Subsystem"]
+        subgraph Gateway["<<part>> API Gateway<br/>Port 8080"]
+            GW_Auth["<<part>> Auth Handler"]
+            GW_Rate["<<part>> Rate Limiter"]
+            GW_Router["<<part>> Request Router"]
+            
+            P_HTTP["<<port>> p_http<br/>HTTP/2"]
+            P_GRPC["<<port>> p_grpc<br/>gRPC"]
+        end
+        
+        subgraph User["<<part>> User Management<br/>Port 8081"]
+            U_Profile["<<part>> Profile Manager"]
+            U_Auth["<<part>> Credentials Store"]
+            U_Prefs["<<part>> Preferences Manager"]
+            
+            P_UserAPI["<<port>> p_api<br/>gRPC"]
+        end
+        
+        subgraph Session["<<part>> Session Management<br/>Port 8082"]
+            S_State["<<part>> State Manager"]
+            S_Context["<<part>> Context Builder"]
+            S_Persist["<<part>> Persistence Handler"]
+            
+            P_SessionAPI["<<port>> p_api<br/>gRPC"]
+        end
+        
+        subgraph Cache["<<part>> Redis Cluster"]
+            C_Session["<<part>> Session Cache"]
+            C_User["<<part>> User Cache"]
+            C_RateLimit["<<part>> Rate Limit Counters"]
+            
+            P_Redis["<<port>> p_redis<br/>Redis Protocol<br/>6379"]
+        end
+        
+        subgraph DB["<<part>> PostgreSQL"]
+            DB_Users["<<part>> users table"]
+            DB_Sessions["<<part>> sessions table"]
+            DB_Logs["<<part>> audit_logs table"]
+            
+            P_SQL["<<port>> p_sql<br/>PostgreSQL<br/>5432"]
+        end
+    end
+    
+    %% HTTP connections
+    P_HTTP -->|"HTTP Request<br/>+ JWT Token"| GW_Auth
+    GW_Auth -->|"Validated Request"| GW_Rate
+    GW_Rate -->|"Rate-Limited Request"| GW_Router
+    
+    %% Gateway to Services
+    GW_Router -->|"gRPC:<br/>GetUser(userId)"| P_UserAPI
+    P_UserAPI --> U_Profile
+    
+    GW_Router -->|"gRPC:<br/>GetSession(sessionId)"| P_SessionAPI
+    P_SessionAPI --> S_State
+    
+    %% User Service connections
+    U_Profile <-->|"SQL: SELECT/UPDATE<br/>users table"| P_SQL
+    P_SQL <--> DB_Users
+    
+    U_Profile <-->|"Redis: GET/SET<br/>user:{id}"| P_Redis
+    P_Redis <--> C_User
+    
+    U_Auth <-->|"SQL: SELECT<br/>credentials check"| P_SQL
+    
+    %% Session Service connections
+    S_State <-->|"Redis: GET/SET<br/>session:{id}"| P_Redis
+    P_Redis <--> C_Session
+    
+    S_Persist -->|"SQL: INSERT<br/>sessions table"| P_SQL
+    P_SQL <--> DB_Sessions
+    
+    S_Context <-->|"Redis: LRANGE<br/>context:{sessionId}"| P_Redis
+    
+    %% Rate Limiter connections
+    GW_Rate <-->|"Redis: INCR<br/>rate:{userId}"| P_Redis
+    P_Redis <--> C_RateLimit
+    
+    %% Audit logging
+    GW_Router -.->|"Async: Log Request"| P_SQL
+    P_SQL -.-> DB_Logs
+    
+    style CoreServiceBlock fill:#e8f4f8,stroke:#006994,stroke-width:3px
+    style Gateway fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    style User fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    style Session fill:#e1f5ff,stroke:#01579b,stroke-width:2px
+    style Cache fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style DB fill:#ffebee,stroke:#b71c1c,stroke-width:2px

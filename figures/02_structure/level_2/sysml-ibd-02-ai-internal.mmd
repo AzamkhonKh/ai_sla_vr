@@ -1,0 +1,115 @@
+graph LR
+    subgraph AIServicesBlock["<<part def>> AI Services Subsystem"]
+        subgraph STT["<<part>> STT Service<br/>Port 8083"]
+            STT_Proc["<<part>> Audio Processor"]
+            STT_Model["<<part>> Whisper Model"]
+            STT_Cache["<<part>> Cache Handler"]
+            
+            P_STT["<<port>> p_api<br/>gRPC"]
+        end
+        
+        subgraph Conv["<<part>> Conversation Service<br/>Port 8084"]
+            Conv_Orch["<<part>> Dialogue Orchestrator"]
+            Conv_Context["<<part>> Context Manager"]
+            Conv_Valid["<<part>> Constraint Validator"]
+            
+            P_Conv["<<port>> p_api<br/>gRPC"]
+        end
+        
+        subgraph TTS["<<part>> TTS Service<br/>Port 8085"]
+            TTS_Engine["<<part>> Piper Engine"]
+            TTS_Prosody["<<part>> Prosody Generator"]
+            TTS_Cache["<<part>> Cache Handler"]
+            
+            P_TTS["<<port>> p_api<br/>gRPC"]
+        end
+        
+        subgraph Pron["<<part>> Pronunciation Service<br/>Port 8086"]
+            Pron_Analyzer["<<part>> Phoneme Analyzer"]
+            Pron_Scorer["<<part>> Confidence Scorer"]
+            Pron_Feedback["<<part>> Feedback Generator"]
+            
+            P_Pron["<<port>> p_api<br/>gRPC"]
+        end
+        
+        subgraph LLM["<<part>> Cloud LLM"]
+            LLM_Endpoint["OpenAI API<br/>GPT-4"]
+            
+            P_LLM["<<port>> p_https<br/>HTTPS/443"]
+        end
+        
+        subgraph Cache["<<part>> Redis Cluster"]
+            C_STT["<<part>> STT Cache<br/>audio_hash → text"]
+            C_TTS["<<part>> TTS Cache<br/>text_hash → audio"]
+            C_Context["<<part>> Context Cache<br/>session → messages[]"]
+            
+            P_Redis["<<port>> p_redis<br/>6379"]
+        end
+        
+        subgraph Milvus["<<part>> Milvus Vector DB"]
+            M_Embeddings["<<part>> Conversation Embeddings"]
+            M_Search["<<part>> Similarity Search"]
+            
+            P_Milvus["<<port>> p_grpc<br/>19530"]
+        end
+    end
+    
+    %% STT Service flow
+    P_STT -->|"Transcribe(audio)"| STT_Proc
+    STT_Proc -->|"Check cache"| STT_Cache
+    STT_Cache <-->|"Redis: GET<br/>audio:{hash}"| P_Redis
+    P_Redis <--> C_STT
+    
+    STT_Proc -->|"Raw audio"| STT_Model
+    STT_Model -->|"Transcribed text<br/>confidence: 0.95"| STT_Proc
+    STT_Cache -->|"Store result"| P_Redis
+    
+    %% Conversation Service flow
+    P_Conv -->|"GenerateResponse(text)"| Conv_Orch
+    Conv_Orch -->|"Get context"| Conv_Context
+    Conv_Context <-->|"Redis: LRANGE<br/>context:{sessionId}"| P_Redis
+    P_Redis <--> C_Context
+    
+    Conv_Context -->|"Get similar convs"| P_Milvus
+    P_Milvus <--> M_Search
+    M_Search <--> M_Embeddings
+    
+    Conv_Orch -->|"POST /chat/completions<br/>{messages, temp: 0.7}"| P_LLM
+    P_LLM <--> LLM_Endpoint
+    LLM_Endpoint -->|"Response text"| Conv_Orch
+    
+    Conv_Orch -->|"Validate response"| Conv_Valid
+    Conv_Valid -->|"Validated text"| Conv_Orch
+    
+    Conv_Orch -->|"Store embedding"| P_Milvus
+    
+    %% TTS Service flow
+    P_TTS -->|"Synthesize(text)"| TTS_Engine
+    TTS_Engine -->|"Check cache"| TTS_Cache
+    TTS_Cache <-->|"Redis: GET<br/>text:{hash}"| P_Redis
+    P_Redis <--> C_TTS
+    
+    TTS_Engine -->|"Add prosody"| TTS_Prosody
+    TTS_Prosody -->|"Marked text"| TTS_Engine
+    TTS_Engine -->|"Audio stream<br/>+ phonemes"| P_TTS
+    TTS_Cache -->|"Store audio"| P_Redis
+    
+    %% Pronunciation flow
+    P_Pron -->|"Analyze(audio, text)"| Pron_Analyzer
+    Pron_Analyzer -->|"Phoneme sequences"| Pron_Scorer
+    Pron_Scorer -->|"Scores per phoneme"| Pron_Feedback
+    Pron_Feedback -->|"Feedback + suggestions"| P_Pron
+    
+    %% Cross-service connections
+    STT_Proc -.->|"Text"| Conv_Orch
+    Conv_Orch -.->|"Response text"| TTS_Engine
+    Conv_Orch -.->|"Audio + text"| Pron_Analyzer
+    
+    style AIServicesBlock fill:#e8f4f8,stroke:#006994,stroke-width:3px
+    style STT fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style Conv fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style TTS fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style Pron fill:#f3e5f5,stroke:#4a148c,stroke-width:2px
+    style LLM fill:#e0f2f1,stroke:#004d40,stroke-width:2px
+    style Cache fill:#fff3e0,stroke:#e65100,stroke-width:2px
+    style Milvus fill:#fce4ec,stroke:#880e4f,stroke-width:2px
