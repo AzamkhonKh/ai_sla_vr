@@ -1,0 +1,137 @@
+\documentclass[10pt, a4paper, twocolumn]{article}
+
+% --- STANDARD PREAMBLE (Compatible with all compilers) ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % Standard readable font
+\usepackage[english]{babel}
+
+\usepackage[a4paper, top=2cm, bottom=2cm, left=1.5cm, right=1.5cm]{geometry}
+\usepackage{enumitem}
+\setlist[itemize]{label=-, leftmargin=*} 
+
+\usepackage{titlesec}
+\usepackage{parskip}
+\usepackage{xcolor}
+\usepackage{graphicx} 
+\usepackage{hyperref}
+
+% Custom styling
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{black}}
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries\color{darkgray}}
+  {\thesubsection}{1em}{}
+
+% Meta-data
+\title{\textbf{VR-Backend Interface Architecture: \\Balancing Speed and Reliability}\\ \large Response to Research Question 3 (RQ3)}
+\author{Project Document}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction: The Challenge of Immersion}
+
+In the development of our Virtual Reality (VR) learning solution, we faced a central question (RQ3): \textit{how should the interface between the VR headset and the backend be designed to minimize latency enough to maintain immersion, while guaranteeing that the user's pedagogical progression is saved without error?}
+
+Our answer relies on a key architectural decision: the adoption of a \textbf{Hybrid Edge-Cloud architecture} based on microservices. This approach allows us to leverage the best of both worlds to simultaneously optimize real-time performance and data consistency.
+
+\section{The Speed Strategy: Masking Latency}
+
+The primary objective is to reduce the perceived latency for the user, aiming for a Cloud loop of less than 1.5 seconds (NFR1). To achieve this, we divided the processing into two distinct phases.
+
+\subsection{A. Immediate On-Device Processing (Edge)}
+
+Instead of immediately sending every sound to the Cloud, we utilize the computing power of the VR headset itself.
+
+\begin{itemize}
+    \item \textbf{Action:} As soon as the user starts speaking, lightweight processing is performed locally.
+    \item \textbf{Technology:} We use an embedded AI SDK (including \textit{Whisper Tiny}) for basic speech recognition and initial Natural Language Understanding (NLU).
+    \item \textbf{Result:} This allows simple interactions to be processed in less than \textbf{200 ms} directly on the device, offering instant responsiveness for critical tasks.
+\end{itemize}
+
+\subsection{B. Intelligent Audio Streaming (Cloud)}
+
+For complex responses requiring our \textit{Conversation Service}, we do not make the user wait for the calculation to finish.
+
+\begin{itemize}
+    \item \textbf{Architecture:} The backend is built with \textbf{Golang} microservices orchestrated by \textbf{Kubernetes}, ensuring high performance under load.
+    \item \textbf{The Streaming Strategy:} The LLM/TTS (\textit{Text-to-Speech}) service generates the audio response in a continuous stream. The VR client begins playing the audio as soon as the first packets are received, without waiting for the full phrase to be generated. This effectively masks network and AI computation latency.
+\end{itemize}
+
+\section{The Reliability Strategy: State Synchronization}
+
+Speed must not sacrifice accuracy. We must guarantee that the user's pedagogical path is tracked rigorously (FR6).
+
+\subsection{A. A Single Source of Truth}
+To avoid data conflicts, we centralize critical state. We use \textbf{PostgreSQL} as the single source of truth. This ensures reliable (ACID) transactions when retrieving scenario state and updating progress after interaction.
+
+\subsection{B. Pedagogical Control}
+The AI does not "drift." Dialogue generation by the LLM is strictly constrained by scenario graphs retrieved from the database. This ensures that every response aligns with pedagogical objectives and adapts the difficulty based on the user's actual level.
+
+\subsection{C. Isolation and Asynchrony}
+To keep the system robust, we separate state logic into isolated microservices. Non-critical tasks (such as analytics) are handled asynchronously via \textbf{Redis Pub/Sub}, avoiding any blockage of the immediate conversation loop.
+
+% --- FULL PAGE IMAGE BLOCK ---
+\clearpage
+\begin{figure*}[p] 
+    \centering
+    \vspace*{\fill}
+    
+    % Code intelligent: Checks if image exists before trying to include it
+    % This prevents errors if the file is missing in the current folder.
+    \IfFileExists{diagram_rq3.jpg}{
+        \includegraphics[width=0.95\textwidth, height=0.9\textheight, keepaspectratio]{diagram_rq3.jpg}
+    }{
+        % Fallback if image is missing (e.g. in preview)
+        \framebox{\parbox{0.8\textwidth}{\centering
+            \vspace{6cm}
+            \huge \textbf{IMAGE PLACEHOLDER}\\
+            \vspace{1cm}
+            \large The code is looking for: \texttt{diagram\_rq3.jpg}\\
+            \small Make sure the image file is in the same directory as this .tex file.
+            \vspace{6cm}
+        }}
+    }
+    
+    \caption{\textbf{Sequence Diagram (RQ3):} Detailed interaction flow showing the Hybrid Edge-Cloud processing.}
+    \label{fig:sequence_diagram}
+    \vspace*{\fill}
+\end{figure*}
+\clearpage
+% -----------------------------
+
+\section{Conclusion}
+
+In summary, the Hybrid Edge-Cloud architecture fully answers Research Question 3. It succeeds in a dual challenge:
+\begin{enumerate}
+    \item \textbf{Minimizing latency} through Edge offloading and TTS streaming.
+    \item \textbf{Guaranteeing reliability} through rigorous state management via PostgreSQL and strict scenario control.
+\end{enumerate}
+
+The result is a fluid and natural user experience, supported by a robust and consistent pedagogical tracking system.
+
+\section*{Bibliographic References}
+\footnotesize
+The architectural choices presented are supported by the following technical and scientific literature:
+
+\begin{itemize}
+    \item Rod Ellis. 2008. \textit{Principles of Instructed Second Language Acquisition}. CAL Digest.
+    \item Adithya T. G. et al. 2024. \textit{Leveraging Virtual Reality and AI Tutoring for Language Learning}. arXiv preprint.
+    \item Bob Godwin-Jones. 2024. \textit{AI and VR Converge: The Future of Language Learning in an Emerging XR Ecosystem}.
+    \item Frontiers in Virtual Reality. 2025. \textit{Analyzing and Comparing Augmented and Virtual Reality in Vocabulary Learning}.
+    \item ISO/IEC/IEEE. 2011. \textit{Systems and software engineering Architecture description}. Standard 42010:2011.
+    \item Stephen D. Krashen. 1982. \textit{Principles and Practice in Second Language Acquisition}. Pergamon Press.
+    \item Michael H. Long. 1996. \textit{The Role of the Linguistic Environment in Second Language Acquisition}. Academic Press.
+    \item Oxford University Press. 2025. \textit{Virtual Reality for Language Learning}. ELT Journal.
+    \item Isabel Schorr et al. 2024. \textit{Foreign language learning using augmented reality environments}. Frontiers in Virtual Reality.
+    \item Merrill Swain. 1995. \textit{Three Functions of Output in Second Language Learning}.
+    \item Michael Vallance. 2024. \textit{Virtual Heritage \& AI}. ICEEL '23.
+    \item Zihao Zhu et al. 2025. \textit{Exploring LLM-Powered Role and Action-Switching Pedagogical Agents}. CHI 25.
+\end{itemize}
+
+\end{document}

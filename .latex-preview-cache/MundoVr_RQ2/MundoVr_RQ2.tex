@@ -1,0 +1,389 @@
+\documentclass[10pt, a4paper, twocolumn]{article}
+
+\usepackage[a4paper, top=2.5cm, bottom=2.5cm, left=2cm, right=2cm]{geometry}
+
+\setlength{\columnsep}{1.8em}
+
+\usepackage{fontspec}
+\usepackage[english, bidi=basic, provide=*]{babel}
+\babelprovide[import, onchar=ids fonts]{english}
+\babelfont{rm}{Noto Sans} 
+
+\usepackage{amsmath}
+\usepackage{booktabs} 
+\usepackage{graphicx}
+\usepackage{caption} 
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=blue,
+    pdftitle={MundoVR RQ2 Section},
+    pdfpagemode=FullScreen,
+    }
+
+\usepackage[style=ieee, backend=biber]{biblatex}
+\usepackage{csquotes}
+
+\begin{filecontents*}{\jobname.bib}
+@article{ellis2008principles,
+title={Principles of Instructed Second Language Acquisition},
+author={Ellis, Rod},
+journal={CAL Digest},
+year={2008},
+url={https://www.google.com/search?q=https://www.cal.org/resource/principles-of-instructed-second-language-acquisition/}
+}
+@article{adithya2024leveraging,
+title={Leveraging Virtual Reality and AI Tutoring for Language Learning: A Case Study of a Virtual Campus Environment with OpenAI GPT Integration with Unity 3D},
+author={Adithya T. G. and Abhinavaram N. and Gowri Srinivasa},
+journal={arXiv preprint arXiv:2411.12619},
+year={2024},
+doi={10.48550/arXiv:2411.12619}
+}
+@misc{godwin2024ai,
+title={AI and VR Converge: The Future of Language Learning in an Emerging XR Ecosystem},
+author={Godwin-Jones, Bob},
+year={2024},
+publisher={Self-Published Research Report},
+url={https://godwinjones.com/godwin-jones\_vr\_ai\_merge.pdf}
+}
+@article{frontiers2025analyzing,
+title={Analyzing and Comparing Augmented and Virtual Reality in Vocabulary Learning},
+author={{Frontiers in Virtual Reality}},
+journal={Frontiers in Virtual Reality},
+year={2025},
+doi={10.3389/frvir.2025.1522380}
+}
+@standard{iso2011systems,
+title={Systems and software engineering -- Architecture description},
+organization={ISO/IEC/IEEE},
+number={42010:2011},
+year={2011},
+url={https://www.iso.org/standard/50508.html}
+}
+@book{krashen1982principles,
+title={Principles and Practice in Second Language Acquisition},
+author={Krashen, Stephen D.},
+year={1982},
+publisher={Pergmon Press},
+address={Oxford},
+url={https://www.google.com/search?q=http://www.sdkhen.com/content/books/principles\_and\_practice.pdf}
+}
+@incollection{long1996role,
+title={The Role of the Linguistic Environment in Second Language Acquisition},
+author={Long, Michael H.},
+booktitle={Handbook of Second Language Acquisition},
+editor={Ritchie, William C. and Bhatia, Tej K.},
+year={1996},
+publisher={Academic Press},
+address={San Diego, CA},
+pages={413--468}
+}
+@article{oxford2025virtual,
+title={Virtual Reality for Language Learning},
+author={{Oxford University Press}},
+journal={ELT Journal},
+year={2025},
+doi={10.1093/elt/ccaf025}
+}
+@article{schorr2024foreign,
+title={Foreign language learning using augmented reality environments: a systematic review},
+author={Schorr, Isabel and Plecher, David A. and Eichhorn, Christian and Klinker, Gudrun},
+journal={Frontiers in Virtual Reality},
+volume={5},
+year={2024},
+pages={1288824},
+doi={10.3389/frvir.2024.1288824}
+}
+@incollection{swain1995three,
+title={Three Functions of Output in Second Language Learning},
+author={Swain, Merrill},
+booktitle={Principles and Practice in Applied Linguistics: Studies in Honour of H. G. Widdowson},
+editor={Cook, Guy and Seidlhofer, Barbara},
+year={1995},
+publisher={Oxford University Press},
+address={Oxford},
+pages={125--144}
+}
+@inproceedings{vallance2024virtual,
+title={Virtual Heritage \& AI: Learning about 19th Century Japan with Isabella Bird},
+author={Vallance, Michael},
+booktitle={ICEEL '23: Proceedings of the 2023 7th International Conference on Education and E-Learning},
+year={2024},
+pages={6--13},
+doi={10.1145/3637989.3638007}
+}
+@inproceedings{zhu2025exploring,
+title={Exploring LLM-Powered Role and Action-Switching Pedagogical Agents for History Education in Virtual Reality},
+author={Zhu, Zihao and Yu, Ao and Tong, Xin and Hui, Pan},
+booktitle={CHI '25: Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems},
+year={2025},
+doi={10.1145/3706598.3713109}
+}
+\end{filecontents*}
+
+\addbibresource{\jobname.bib} 
+
+
+\usepackage{tikz}
+\usetikzlibrary{
+    shapes.geometric, 
+    arrows.meta, 
+    positioning, 
+    matrix,
+    fit,
+    calc
+}
+
+\pgfdeclarelayer{background}
+\pgfdeclarelayer{foreground}
+\pgfsetlayers{background,main,foreground}
+
+\tikzstyle{block} = [
+    rectangle, 
+    draw, 
+    fill=blue!10, 
+    rounded corners, 
+    minimum height=3em, 
+    minimum width=6em,
+    text width=20em,
+    align=center
+]
+\tikzstyle{block_cloud} = [
+    rectangle, 
+    draw, 
+    fill=green!10, 
+    rounded corners, 
+    minimum height=3em, 
+    minimum width=6em,
+    text width=11em,
+    align=center
+]
+\tikzstyle{block_device} = [
+    rectangle, 
+    draw, 
+    fill=orange!10, 
+    rounded corners, 
+    minimum height=3em, 
+    minimum width=6em,
+    text width=11em,
+    align=center
+]
+\tikzstyle{process} = [
+    rectangle, 
+    draw, 
+    fill=cyan!10, 
+    rounded corners, 
+    text centered, 
+    minimum height=3em,
+    text width=15em
+]
+\tikzstyle{decision} = [
+    diamond, 
+    draw, 
+    fill=yellow!10, 
+    aspect=2, 
+    text centered, 
+    minimum height=3em,
+    text width=12em
+]
+\tikzstyle{line} = [draw, -{Stealth[length=10pt,width=8pt]}]
+\tikzstyle{dashed_line} = [draw, dashed, -{Stealth[length=10pt,width=8pt]}]
+\tikzstyle{cloud_boundary} = [
+    draw, 
+    blue, 
+    dashed, 
+    rounded corners, 
+    fill=blue!5, 
+    label={[anchor=north west,xshift=5mm,yshift=-5mm]north west:\textbf{Cloud Services}}
+]
+\tikzstyle{device_boundary} = [
+    draw, 
+    orange!80, 
+    dashed, 
+    rounded corners, 
+    fill=orange!5, 
+    label={[anchor=north west,xshift=5mm,yshift=-5mm]north west:\textbf{On-Device (VR Headset)}}
+]
+
+
+\begin{document}
+
+\section{AI Integration Strategy for Adaptive Dialogue}
+\label{sec:rq2}
+
+To answer our second research question---
+\textbf{What integration strategies for STT, TTS, and conversational AI enable adaptive, pedagogically-aligned dialogue?}---
+we designed and specified a hybrid, service-oriented integration strategy. This approach is the cornerstone of our architecture, as it directly addresses the core conflict between the non-functional requirements of two-tier latency (NFR1) and cost efficiency (NFR3), and the functional requirements for high-fidelity, adaptive AI interaction (FR1, FR2, FR3, FR4, FR5).
+
+\subsection{The Hybrid AI Integration Model}
+\label{sec:hybrid_model}
+
+Our integration strategy is founded on a hybrid processing model that balances on-device and cloud computation. This model is visually specified in Figure \ref{fig:hybrid_architecture}.
+
+\begin{figure*}[htbp] 
+    \centering
+    \resizebox{\textwidth}{!}{
+    \begin{tikzpicture}[node distance=2.5cm, auto]
+        
+        \node (device_label) at (0, 7) {};
+        \node (cloud_label) at (10, 7) {};
+
+        
+        \node (learner) [shape=circle, draw, fill=gray!10, minimum size=4em] {Learner};
+        \node (stt_device) [block_device, below=1cm of learner] {On-Device STT \\ (e.g., Whisper Tiny) \\ \textbf{<200ms Response}};
+        \node (nlu_device) [block_device, below=1cm of stt_device] {On-Device NLU \\ (Simple Intent) \\ \textbf{<200ms Response}};
+        
+        
+        \node (stt_cloud) [block_cloud, right=4cm of stt_device] {Cloud STT Service \\ (e.g., Deepgram) \\ \textbf{(FR1) 90\% Accuracy} \\ \textbf{(FR4) Phoneme Analysis}};
+        \node (convo_service) [block_cloud, right=4cm of nlu_device] {Conversation Service \\ (Cloud LLM / GPT-4) \\ \textbf{(FR2) Dialogue Gen.} \\ \textbf{(FR5) Adaptivity}};
+        \node (tts_cloud) [block_cloud, below=1cm of convo_service] {Cloud TTS Service \\ (e.g., ElevenLabs) \\ \textbf{(FR3) Natural Prosody}};
+        
+        
+        \begin{pgfonlayer}{background}
+            \node[device_boundary, fit=(learner) (stt_device) (nlu_device), minimum width=6cm] {};
+            \node[cloud_boundary, fit=(stt_cloud) (convo_service) (tts_cloud), minimum width=6cm] {};
+        \end{pgfonlayer}
+        
+        
+        \path [line, thick] (learner) -- node [left, pos=0.8] {User Speech} (stt_device);
+        \path [line, thick] (learner) -- (stt_cloud);
+        
+        \path [line, thick] (stt_device) -- node [below, pos=0.8] {Simple Intent} (nlu_device);
+        \path [line, thick, dashed] (stt_cloud) -- (convo_service);
+        \path [line, thick] (convo_service) -- (tts_cloud);
+        
+        \path [line, thick] (tts_cloud) -| node [right, pos=0.8] {NPC Voice} ($(learner.east) + (0.5,0)$) -- (learner.east);
+        
+        
+        \draw [line, red, dashed] (learner.south) .. controls ($(learner.south) + (0,-2.5)$) and ($(nlu_device.south) - (2,0)$) .. (nlu_device.west) .. controls ($(nlu_device.west) - (2,0)$) and ($(learner.west) - (2,-1)$) .. (learner.west);
+        \node at (-3.5, 0.5) [text=red, align=center, text width=3cm] {\textbf{Loop 1: <200ms} \\ (Immersion)};
+        
+        \draw [line, blue, dashed] (learner.east) .. controls ($(learner.east) + (3,0)$) and ($(stt_cloud.north) + (0,2)$) .. (stt_cloud.north) -- (stt_cloud) -- (convo_service) -- (tts_cloud) -- ($(tts_cloud.south) + (0,-1)$) .. controls ($(tts_cloud.south) - (0,3)$) and ($(learner.south) + (3,-3)$) .. (learner.south);
+        \node at (13.5, 0.5) [text=blue, align=center, text width=3cm] {\textbf{Loop 2: <1.5s} \\ (Quality Dialogue)};
+
+    \end{tikzpicture}
+    } 
+    \caption{The Hybrid AI Integration Model, showing the two-tier latency loops (NFR1) by distributing STT, NLU, LLM, and TTS workloads.}
+    \label{fig:hybrid_architecture}
+\end{figure*}
+
+This architecture is defined by two distinct processing loops that run in parallel:
+\begin{itemize}
+    \item \textbf{Loop 1: The Immersion Loop (<200ms).} For latency-critical, simple interactions (e.g., a simple greeting, a "yes/no" answer), we leverage a lightweight on-device AI SDK. This local processing is designed to meet our sub-200ms latency target (NFR1), preserving VR immersion.
+    
+    \item \textbf{Loop 2: The Quality Loop (<1.5s).} For complex conversational tasks, the user's speech is simultaneously streamed to high-performance cloud services. This loop is responsible for high-accuracy streaming STT (FR1), phoneme-level pronunciation analysis (FR4), complex dialogue generation (FR2), adaptive difficulty (FR5), and natural TTS (FR3). This loop is engineered to complete within our 1.5-second target (NFR1).
+\end{itemize}
+
+\subsection{Justification: Architectural Trade-offs}
+\label{sec:tradeoffs}
+
+The choice of a hybrid architecture is a deliberate compromise, designed to resolve the competing non-functional requirements. We evaluated this model against the two primary alternatives, with the trade-offs summarized in Table \ref{tab:tradeoffs}.
+
+\begin{table*}[htbp] 
+    \centering
+    \caption{Comparison of Architectural Integration Strategies}
+    \label{tab:tradeoffs}
+    \begin{tabular}{@{}llll@{}}
+        \toprule
+        \textbf{Criteria} & \textbf{Cloud-Centric Model} & \textbf{On-Device-Centric Model} & \textbf{MundoVR Hybrid Model (Our Choice)} \\
+        \midrule 
+        \textbf{Latency (NFR1)} & \textbf{FAILS} (High latency) & \textbf{PASS} (Low latency) & \textbf{PASS} (Two-tier latency) \\
+        \midrule 
+        \textbf{AI Quality (FR1-5)} & \textbf{PASS} (High quality) & \textbf{FAILS} (Low quality) & \textbf{PASS} (High quality via cloud) \\
+        \midrule 
+        \textbf{Immersion} & \textbf{FAILS} (Broken by lag) & \textbf{PASS} (Maintained) & \textbf{PASS} (Maintained by <200ms loop) \\
+        \midrule 
+        \textbf{Scalability (NFR2)} & High (Cloud-native) & N/A (Device-bound) & High (Cloud components) \\
+        \midrule 
+        \textbf{Cost (NFR3)} & High (All tasks) & Low (No cloud) & \textbf{Optimized} (On-device for 40\%) \\
+        \bottomrule
+    \end{tabular}
+\end{table*}
+
+As the analysis shows:
+\begin{itemize}
+    \item \textbf{A Cloud-Centric Model} fails our primary latency requirement (NFR1). Even simple feedback would incur a full network round-trip, far exceeding the sub-200ms threshold required to maintain VR immersion.
+    
+    \item \textbf{An On-Device-Centric Model} fails our functional requirements. The computational constraints of current mobile VR hardware make it unfeasible to run the large-scale models required for high-accuracy STT (FR1), complex dialogue generation (FR2), and natural, prosodic TTS (FR3).
+\end{itemize}
+
+Therefore, our hybrid integration strategy is the only specified solution that satisfies all competing requirements. It uses on-device processing to satisfy the immediate immersion loop, while strategically delegating complex tasks to the cloud to ensure pedagogical quality.
+
+\subsection{Enabling Pedagogically-Aligned Dialogue}
+\label{sec:pedagogy}
+
+Our integration strategy is driven by pedagogical requirements derived from Second Language Acquisition (SLA) theory, not just technical feasibility. The "Conversation Service" (Figure \ref{fig:hybrid_architecture}) is the core component that enables this. Figure \ref{fig:pedagogical_loop} specifies the interaction flow for this service.
+
+\begin{figure}[htbp]
+    \centering
+    \resizebox{\columnwidth}{!}{
+    \begin{tikzpicture}[node distance=1.5cm and 1cm, text width=7em]
+        
+        \node (start) [shape=circle, draw, fill=black, inner sep=0pt, minimum size=2mm] {};
+        \node (speak) [process, below=0.5cm of start] {User Speaks};
+        \node (stt) [process, below=1cm of speak] {STT Processing (Cloud) (FR1)};
+        \node (text) [block, below=1cm of stt] {User Text: "I want...\\ Phonemes: [...] (FR4)"};
+        \node (convo) [process, below=1cm of text] {Conversation Service (LLM) (FR2)};
+        \node (db_check) [process, right=2cm of convo] {Check User Profile (DB)};
+        \node (sla_rules) [decision, below=1cm of convo] {Apply Pedagogical Rules? (FR5)};
+        \node (krashen) [block, below=1cm of sla_rules] {Adapt Difficulty \\ (Krashen 'i+1') \autocite{krashen1982principles}};
+        \node (long) [block, right=1.5cm of krashen] {Constrain Dialogue (Scenario Graphs) (Ellis) \autocite{ellis2008principles}};
+        \node (swain) [block, left=1.5cm of krashen] {Log Pronunciation Feedback (Swain 'Output') \autocite{swain1995three}};
+        \node (gen_resp) [process, below=3.5cm of sla_rules] {Generate NPC Response};
+        \node (tts) [process, below=1cm of gen_resp] {TTS Processing (Cloud) (FR3)};
+        \node (listen) [process, below=1cm of tts] {User Hears NPC Response};
+        \node (end) [shape=circle, draw, fill=black, inner sep=0pt, minimum size=2mm, below=0.5cm of listen] {};
+
+        
+        \path [line] (start) -- (speak);
+        \path [line] (speak) -- (stt);
+        \path [line] (stt) -- (text);
+        \path [line] (text) -- (convo);
+        \path [line, dashed] (convo) -- (db_check);
+        \path [line] (convo) -- (sla_rules);
+        \path [line] (sla_rules) -- node[left, pos=0.8]{Yes} (krashen);
+        \path [line] (sla_rules) -- (long);
+        \path [line, dashed] (text) -| (swain);
+        \path [line] (sla_rules) -- node[right, pos=0.8]{No} (gen_resp);
+        
+        
+        \begin{pgfonlayer}{background}
+            \node[draw, dashed, fill=gray!5, rounded corners, fit=(krashen) (long) (swain), minimum height=4.5cm] (sla_box) {};
+            \draw [line] (krashen) -- (gen_resp);
+            \draw [line] (long.south) |- (gen_resp.east);
+            \draw [line] (swain.south) |- (gen_resp.west);
+        \end{pgfonlayer}
+        
+        \path [line] (gen_resp) -- (tts);
+        \path [line] (tts) -- (listen);
+        \path [line] (listen) -- (end);
+    \end{tikzpicture}
+    } 
+    \caption{Activity Diagram of the Adaptive Pedagogical Loop, illustrating how SLA theories \autocite{krashen1982principles, long1996role, swain1995three} are integrated into the conversational flow to answer RQ2.}
+    \label{fig:pedagogical_loop}
+\end{figure}
+
+
+The integration of AI systems is fundamentally driven by three pedagogical objectives that form the conversational loop:
+
+\begin{itemize}
+    \item \textbf{1. Goal-Oriented Conversation (Constrained Dialogue)}
+    
+    The conversational AI (LLM) is not a generic chatbot. Dialogue generation (FR2) is deliberately \enquote{constrained by scenario graphs} aligned with specific user goals (Sec 3.1) and pedagogical principles \autocite{ellis2008principles}. This structured approach ensures that the conversation remains focused on the learning objective, providing a controlled environment for the student to engage in meaningful interaction, which aligns directly with Long's Interaction Hypothesis \autocite{long1996role}.
+    
+    \item \textbf{2. Adaptive Difficulty (Implementation of Krashen's i+1)}
+    
+    The system is designed to be dynamically adaptive. The Conversation Service manages the LLM and interfaces with the User Service to retrieve the learner's profile and progress. This enables continuous adaptive difficulty adjustment (FR5). By ensuring that the conversational input is slightly above the learner's current competence level, the system directly implements Krashen's \enquote{Comprehensible Input (i+1)} hypothesis \autocite{krashen1982principles}, thereby maximizing learning potential without overwhelming the student.
+
+    \item \textbf{3. The STT-TTS Interaction Loop (Output Hypothesis)}
+
+    The STT and TTS services form the technical basis of the learning loop. The TTS provides natural, prosodic output (FR3), serving as a comprehensible and realistic language model for the learner. The STT service, crucially, performs phoneme-level pronunciation analysis (FR4) on the student's speech. This analysis generates data for immediate, actionable feedback on the user's *production*. This mechanism strongly supports Swain's Output Hypothesis \autocite{swain1995three}, which posits that the act of producing language (output) pushes learners to notice gaps in their knowledge, thus driving language acquisition.
+\end{itemize}
+
+In summary, our integration strategy answers RQ2 by specifying a decoupled, hybrid architecture that manages technical trade-offs while ensuring that the STT, TTS, and LLM components are interconnected to serve a pedagogically-grounded, adaptive conversational loop.
+
+\printbibliography
+
+\end{document}
