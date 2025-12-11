@@ -90,7 +90,7 @@
           <mxGeometry x="5" y="629" width="1113" height="1057" as="geometry" />
         </mxCell>
         <mxCell id="KYGyePTVgiPOHvJ9pOgh-71" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;constraints&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;NF1 Performance and Latency&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="593" y="1430" width="230" height="180" as="geometry">
+          <mxGeometry x="530" y="1420" width="230" height="180" as="geometry">
             <mxRectangle x="530" y="1420" width="201" height="41" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -107,7 +107,7 @@
           <mxGeometry y="140" width="230" height="40" as="geometry" />
         </mxCell>
         <mxCell id="KYGyePTVgiPOHvJ9pOgh-81" value="&lt;b&gt;Adaptive Learning &amp;amp; Feedback&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="60" y="950" width="120" height="60" as="geometry" />
+          <mxGeometry x="11" y="941.5" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="31bApOFHxrXMNieLqTHU-23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="KYGyePTVgiPOHvJ9pOgh-85" target="31bApOFHxrXMNieLqTHU-12">
           <mxGeometry relative="1" as="geometry" />
@@ -121,10 +121,40 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="KYGyePTVgiPOHvJ9pOgh-85" value="&lt;b&gt;System Access &amp;amp; Progression Tracking&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="60" y="1157.5" width="120" height="60" as="geometry" />
+          <mxGeometry x="11" y="1157.5" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-89" value="" style="group" parent="1" vertex="1" connectable="0">
+          <mxGeometry x="32" y="684" width="413" height="169" as="geometry" />
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="KYGyePTVgiPOHvJ9pOgh-89" source="KYGyePTVgiPOHvJ9pOgh-47" target="KYGyePTVgiPOHvJ9pOgh-54" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="183" y="97.75" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31bApOFHxrXMNieLqTHU-33" value="&amp;lt;&amp;lt;derives&amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KYGyePTVgiPOHvJ9pOgh-97">
+          <mxGeometry x="-0.2627" y="-3" relative="1" as="geometry">
+            <mxPoint x="8" y="-3" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-47" value="&lt;b&gt;Real-Time Immersive Conversation&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-89" vertex="1">
+          <mxGeometry x="-23" y="67" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-88" value="" style="group" parent="KYGyePTVgiPOHvJ9pOgh-89" vertex="1" connectable="0">
+          <mxGeometry x="183" width="230" height="169" as="geometry" />
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-52" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR1 Speech Processing&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-88" vertex="1">
+          <mxGeometry width="230" height="140" as="geometry">
+            <mxRectangle width="146" height="41" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-53" value="id = 1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-52" vertex="1">
+          <mxGeometry y="30" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-54" value="text =&amp;nbsp;&lt;span style=&quot;text-align: justify; background-color: initial;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;The system shall capture user audio input and transcribe it into text represen&lt;/span&gt;&lt;span style=&quot;text-align: justify; background-color: initial;&quot;&gt;tation, supporting continuous speech recognition and language detection.&#39;&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-52" vertex="1">
+          <mxGeometry y="60" width="230" height="80" as="geometry" />
         </mxCell>
         <mxCell id="KYGyePTVgiPOHvJ9pOgh-105" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;constraints&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;NF3 Usability Feedback&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="99" y="1310" width="230" height="180" as="geometry">
+          <mxGeometry x="32" y="1310" width="230" height="180" as="geometry">
             <mxRectangle x="60" y="1460" width="201" height="41" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -169,7 +199,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="31bApOFHxrXMNieLqTHU-20" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;constraints&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;NFR5 Scalability&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="347" y="1420" width="230" height="111" as="geometry">
+          <mxGeometry x="280" y="1420" width="230" height="111" as="geometry">
             <mxRectangle x="280" y="1420" width="158" height="41" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -180,7 +210,7 @@
           <mxGeometry y="60" width="230" height="51" as="geometry" />
         </mxCell>
         <mxCell id="31bApOFHxrXMNieLqTHU-37" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;constraints&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;NFR6&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;Security&lt;/span&gt;&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="597" y="1310" width="230" height="110" as="geometry">
+          <mxGeometry x="530" y="1310" width="230" height="99" as="geometry">
             <mxRectangle x="530" y="1310" width="158" height="41" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -188,10 +218,10 @@
           <mxGeometry y="30" width="230" height="30" as="geometry" />
         </mxCell>
         <mxCell id="31bApOFHxrXMNieLqTHU-39" value="&lt;div style=&quot;text-align: justify;&quot;&gt;text =&amp;nbsp;&lt;span style=&quot;text-align: justify;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;font-size: 10px; text-align: start; background-color: initial;&quot;&gt;All user voice data and PII must be encrypted at rest (AES-256) and in transit (TLS&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 10px; text-align: start; background-color: initial;&quot;&gt;1.3).&lt;/span&gt;.&#39;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="31bApOFHxrXMNieLqTHU-37">
-          <mxGeometry y="60" width="230" height="50" as="geometry" />
+          <mxGeometry y="60" width="230" height="39" as="geometry" />
         </mxCell>
         <mxCell id="31bApOFHxrXMNieLqTHU-40" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;nbsp;constraints&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;NFR7&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;nbsp;Recoverability&lt;/span&gt;&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="347" y="1310" width="230" height="99" as="geometry">
+          <mxGeometry x="280" y="1310" width="230" height="99" as="geometry">
             <mxRectangle x="280" y="1320" width="158" height="41" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -201,96 +231,8 @@
         <mxCell id="31bApOFHxrXMNieLqTHU-42" value="&lt;div style=&quot;text-align: justify;&quot;&gt;text =&amp;nbsp;&lt;span style=&quot;text-align: justify;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;font-size: 10px; text-align: start; background-color: initial;&quot;&gt;User progress data shall be retained for a minimum of 12 months of inactivity.&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&#39;&lt;/span&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="31bApOFHxrXMNieLqTHU-40">
           <mxGeometry y="60" width="230" height="39" as="geometry" />
         </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-82" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR7 Adaptive Progression&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="279" y="910" width="230" height="140" as="geometry">
-            <mxRectangle x="230" y="900.5" width="159" height="41" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-83" value="id = 7" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-82" vertex="1">
-          <mxGeometry y="30" width="230" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-84" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;text =&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial; text-align: justify;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;The system shall dynamically adjust the complexity of generated dialogue&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;(vocabulary, grammar) based on the learner’s proficiency level and real-time performance.&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&#39;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-82" vertex="1">
-          <mxGeometry y="60" width="230" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-65" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR5 Learning support&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="799" y="928.5" width="230" height="140" as="geometry">
-            <mxRectangle x="831" y="990.5" width="159" height="41" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-66" value="id = 5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-65" vertex="1">
-          <mxGeometry y="30" width="230" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-67" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;text =&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial; text-align: justify;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;The system shall dynamically adjust the complexity of generated dialogue&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;(vocabulary, grammar) based on the learner’s proficiency level and real-time performance.&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&#39;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-65" vertex="1">
-          <mxGeometry y="60" width="230" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-62" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR4 Pronunciation Analysis&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="523" y="910" width="230" height="130" as="geometry">
-            <mxRectangle x="485.5" y="900.5" width="168" height="41" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-63" value="id = 4" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-62" vertex="1">
-          <mxGeometry y="30" width="230" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-64" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;text =&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial; text-align: justify;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;The system shall compare user pronunciation against native speaker ref&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;erence models to identify phonemic errors and generate corrective feedback.&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&#39;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-62" vertex="1">
-          <mxGeometry y="60" width="230" height="70" as="geometry" />
-        </mxCell>
-        <mxCell id="31bApOFHxrXMNieLqTHU-12" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR7 Persistence&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="559" y="1130.5" width="230" height="114" as="geometry">
-            <mxRectangle x="530" y="1130" width="158" height="39" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="31bApOFHxrXMNieLqTHU-13" value="id = 7" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="31bApOFHxrXMNieLqTHU-12">
-          <mxGeometry y="30" width="230" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="31bApOFHxrXMNieLqTHU-14" value="&lt;div style=&quot;text-align: justify;&quot;&gt;text =&amp;nbsp;&lt;span style=&quot;text-align: justify;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;font-size: 10px; text-align: start;&quot;&gt;The system shall record and store user session data, including learned vocabulary&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 10px; text-align: start;&quot;&gt;and completed scenarios.&lt;/span&gt;.&#39;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="31bApOFHxrXMNieLqTHU-12">
-          <mxGeometry y="60" width="230" height="54" as="geometry" />
-        </mxCell>
-        <mxCell id="31bApOFHxrXMNieLqTHU-17" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR8 Identity Management&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="259" y="1138" width="230" height="99" as="geometry">
-            <mxRectangle x="200" y="1146.5" width="158" height="41" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="31bApOFHxrXMNieLqTHU-18" value="id = 8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="31bApOFHxrXMNieLqTHU-17">
-          <mxGeometry y="30" width="230" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="31bApOFHxrXMNieLqTHU-19" value="&lt;div style=&quot;text-align: justify;&quot;&gt;text =&amp;nbsp;&lt;span style=&quot;text-align: justify;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;font-size: 10px; text-align: start; background-color: initial;&quot;&gt;The system shall authenticate users and load their specific learning&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 10px; text-align: start; background-color: initial;&quot;&gt;profile upon entry&lt;/span&gt;.&#39;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="31bApOFHxrXMNieLqTHU-17">
-          <mxGeometry y="60" width="230" height="39" as="geometry" />
-        </mxCell>
-        <mxCell id="31bApOFHxrXMNieLqTHU-56" value="" style="group" vertex="1" connectable="0" parent="1">
-          <mxGeometry x="80" y="671.5" width="958" height="230" as="geometry" />
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-89" value="" style="group" parent="31bApOFHxrXMNieLqTHU-56" vertex="1" connectable="0">
-          <mxGeometry y="12.5" width="413" height="169" as="geometry" />
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="KYGyePTVgiPOHvJ9pOgh-89" source="KYGyePTVgiPOHvJ9pOgh-47" target="KYGyePTVgiPOHvJ9pOgh-54" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="183" y="97.75" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="31bApOFHxrXMNieLqTHU-33" value="&amp;lt;&amp;lt;derives&amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KYGyePTVgiPOHvJ9pOgh-97">
-          <mxGeometry x="-0.2627" y="-3" relative="1" as="geometry">
-            <mxPoint x="8" y="-3" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-47" value="&lt;b&gt;Real-Time Immersive Conversation&lt;/b&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-89" vertex="1">
-          <mxGeometry x="-23" y="67" width="120" height="60" as="geometry" />
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-88" value="" style="group" parent="KYGyePTVgiPOHvJ9pOgh-89" vertex="1" connectable="0">
-          <mxGeometry x="183" width="230" height="169" as="geometry" />
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-52" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR1 Speech Processing&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-88" vertex="1">
-          <mxGeometry width="230" height="140" as="geometry">
-            <mxRectangle width="146" height="41" as="alternateBounds" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-53" value="id = 1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-52" vertex="1">
-          <mxGeometry y="30" width="230" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-54" value="text =&amp;nbsp;&lt;span style=&quot;text-align: justify; background-color: initial;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;The system shall capture user audio input and transcribe it into text represen&lt;/span&gt;&lt;span style=&quot;text-align: justify; background-color: initial;&quot;&gt;tation, supporting continuous speech recognition and language detection.&#39;&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-52" vertex="1">
-          <mxGeometry y="60" width="230" height="80" as="geometry" />
-        </mxCell>
-        <mxCell id="31bApOFHxrXMNieLqTHU-44" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR2 Dialogue Generation&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="31bApOFHxrXMNieLqTHU-56">
-          <mxGeometry x="453.5" y="12.5" width="230" height="140" as="geometry">
+        <mxCell id="31bApOFHxrXMNieLqTHU-44" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR2 Dialogue Generation&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="485.5" y="684" width="230" height="140" as="geometry">
             <mxRectangle x="485.5" y="684" width="152" height="41" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -300,8 +242,8 @@
         <mxCell id="31bApOFHxrXMNieLqTHU-46" value="text =&amp;nbsp;&lt;span style=&quot;text-align: justify; background-color: initial;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;background-color: initial; text-align: justify;&quot;&gt;The system shall generate contextually relevant dialogue responses using&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Large Language Models (LLMs), constrained by active scenario parameters and conversation history.&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&#39;&lt;/span&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="31bApOFHxrXMNieLqTHU-44">
           <mxGeometry y="60" width="230" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="31bApOFHxrXMNieLqTHU-47" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR3 Multimodal Synthesis&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="31bApOFHxrXMNieLqTHU-56">
-          <mxGeometry x="728" width="230" height="230" as="geometry">
+        <mxCell id="31bApOFHxrXMNieLqTHU-47" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR3 Multimodal Synthesis&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="760" y="671.5" width="230" height="230" as="geometry">
             <mxRectangle x="760" y="684" width="158" height="41" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -317,21 +259,11 @@
         <mxCell id="31bApOFHxrXMNieLqTHU-50" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;constraint =&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial; text-align: justify;&quot;&gt;&#39;&lt;/span&gt;Speech-to-text Word Error Rate shall be &amp;lt; 10 % for native-accented speech&lt;span style=&quot;background-color: initial;&quot;&gt;.&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&#39;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="31bApOFHxrXMNieLqTHU-47">
           <mxGeometry y="180" width="230" height="50" as="geometry" />
         </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.459;entryY=0.988;entryDx=0;entryDy=0;entryPerimeter=0;" parent="31bApOFHxrXMNieLqTHU-56" source="KYGyePTVgiPOHvJ9pOgh-47" target="31bApOFHxrXMNieLqTHU-46" edge="1">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="183" y="161" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="31bApOFHxrXMNieLqTHU-29" value="&amp;lt;&amp;lt;derives&amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KYGyePTVgiPOHvJ9pOgh-98">
-          <mxGeometry x="-0.3036" relative="1" as="geometry">
-            <mxPoint y="1" as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="KYGyePTVgiPOHvJ9pOgh-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="31bApOFHxrXMNieLqTHU-56" source="KYGyePTVgiPOHvJ9pOgh-47" target="31bApOFHxrXMNieLqTHU-47" edge="1">
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="KYGyePTVgiPOHvJ9pOgh-47" target="31bApOFHxrXMNieLqTHU-47" edge="1">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="37" y="-21.5" />
-              <mxPoint x="843" y="-21.5" />
+              <mxPoint x="69" y="650" />
+              <mxPoint x="875" y="650" />
             </Array>
           </mxGeometry>
         </mxCell>
@@ -339,6 +271,71 @@
           <mxGeometry x="0.0236" relative="1" as="geometry">
             <mxPoint y="1" as="offset" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.459;entryY=0.988;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="KYGyePTVgiPOHvJ9pOgh-47" target="31bApOFHxrXMNieLqTHU-46" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="215" y="832.5" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31bApOFHxrXMNieLqTHU-29" value="&amp;lt;&amp;lt;derives&amp;gt;&amp;gt;" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="KYGyePTVgiPOHvJ9pOgh-98">
+          <mxGeometry x="-0.3036" relative="1" as="geometry">
+            <mxPoint y="1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-82" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR7 Adaptive Progression&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="230" y="901.5" width="230" height="140" as="geometry">
+            <mxRectangle x="230" y="900.5" width="159" height="41" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-83" value="id = 7" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-82" vertex="1">
+          <mxGeometry y="30" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-84" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;text =&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial; text-align: justify;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;The system shall dynamically adjust the complexity of generated dialogue&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;(vocabulary, grammar) based on the learner’s proficiency level and real-time performance.&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&#39;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-82" vertex="1">
+          <mxGeometry y="60" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-65" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR5 Learning support&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="750" y="920" width="230" height="140" as="geometry">
+            <mxRectangle x="831" y="990.5" width="159" height="41" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-66" value="id = 5" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-65" vertex="1">
+          <mxGeometry y="30" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-67" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;text =&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial; text-align: justify;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;The system shall dynamically adjust the complexity of generated dialogue&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;(vocabulary, grammar) based on the learner’s proficiency level and real-time performance.&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&#39;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-65" vertex="1">
+          <mxGeometry y="60" width="230" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-62" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR4 Pronunciation Analysis&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+          <mxGeometry x="474" y="901.5" width="230" height="130" as="geometry">
+            <mxRectangle x="485.5" y="900.5" width="168" height="41" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-63" value="id = 4" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-62" vertex="1">
+          <mxGeometry y="30" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="KYGyePTVgiPOHvJ9pOgh-64" value="&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;text =&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;background-color: initial; text-align: justify;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;The system shall compare user pronunciation against native speaker ref&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;erence models to identify phonemic errors and generate corrective feedback.&lt;/span&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&#39;&lt;/span&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" parent="KYGyePTVgiPOHvJ9pOgh-62" vertex="1">
+          <mxGeometry y="60" width="230" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="31bApOFHxrXMNieLqTHU-12" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR7 Persistence&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="1130.5" width="230" height="114" as="geometry">
+            <mxRectangle x="530" y="1130" width="158" height="39" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31bApOFHxrXMNieLqTHU-13" value="id = 7" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="31bApOFHxrXMNieLqTHU-12">
+          <mxGeometry y="30" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="31bApOFHxrXMNieLqTHU-14" value="&lt;div style=&quot;text-align: justify;&quot;&gt;text =&amp;nbsp;&lt;span style=&quot;text-align: justify;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;font-size: 10px; text-align: start;&quot;&gt;The system shall record and store user session data, including learned vocabulary&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 10px; text-align: start;&quot;&gt;and completed scenarios.&lt;/span&gt;.&#39;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="31bApOFHxrXMNieLqTHU-12">
+          <mxGeometry y="60" width="230" height="54" as="geometry" />
+        </mxCell>
+        <mxCell id="31bApOFHxrXMNieLqTHU-17" value="&lt;span style=&quot;font-weight: 700;&quot;&gt;&amp;lt;&amp;lt;requirement&amp;gt;&amp;gt;&lt;/span&gt;&lt;div style=&quot;font-weight: 700;&quot;&gt;FR8 Identity Management&lt;/div&gt;" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=30;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="210" y="1138" width="230" height="99" as="geometry">
+            <mxRectangle x="200" y="1146.5" width="158" height="41" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="31bApOFHxrXMNieLqTHU-18" value="id = 8" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="31bApOFHxrXMNieLqTHU-17">
+          <mxGeometry y="30" width="230" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="31bApOFHxrXMNieLqTHU-19" value="&lt;div style=&quot;text-align: justify;&quot;&gt;text =&amp;nbsp;&lt;span style=&quot;text-align: justify;&quot;&gt;&#39;&lt;/span&gt;&lt;span style=&quot;font-size: 10px; text-align: start; background-color: initial;&quot;&gt;The system shall authenticate users and load their specific learning&amp;nbsp;&lt;/span&gt;&lt;span style=&quot;font-size: 10px; text-align: start; background-color: initial;&quot;&gt;profile upon entry&lt;/span&gt;.&#39;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" vertex="1" parent="31bApOFHxrXMNieLqTHU-17">
+          <mxGeometry y="60" width="230" height="39" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

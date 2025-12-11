@@ -1,0 +1,30 @@
+@startuml
+skinparam defaultTextAlignment center
+
+start
+:User Speaks;
+:STT Processing (Cloud) (FR1);
+:User Text: "I want..."\nPhonemes: [...] (FR4);
+
+split
+    :Log Pronunciation Feedback\n(Swain 'Output') [13];
+split again
+    :Conversation Service (LLM) (FR2);
+    note right: Check User Profile (DB)
+    
+    if (Apply Pedagogical Rules? (FR5)) then (Yes)
+        split
+            :Adapt Difficulty\n(Krashen 'i+1') [1];
+        split again
+            :Constrain Dialogue\n(Scenario Graphs) (Ellis) [14];
+        end split
+    else (No)
+    endif
+end split
+
+:Generate NPC Response;
+:TTS Processing (Cloud) (FR3);
+:User Hears NPC Response;
+stop
+
+@enduml
