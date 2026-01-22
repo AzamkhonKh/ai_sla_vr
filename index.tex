@@ -159,9 +159,13 @@ This work makes three primary contributions. First, we present a formally specif
 
 \textbf{p99 Latency:} The 99th percentile latency metric, meaning 99\% of requests complete within the specified time bound. This metric is more robust than average latency for user experience guarantees, as it accounts for tail latency caused by system variability\@. For example, p99 $<$~1.5\,s means that 99 out of~100 user interactions receive responses within~1.5 seconds.
 
-\textbf{Service Level Agreement (SLA):} Performance guarantees defined in terms of measurable metrics such as latency, availability, and throughput. In this work, we use service level agreement-style targets as design constraints rather than contractual obligations.
-
 \textbf{SysML v2 (Systems Modeling Language):} The next-generation general-purpose modeling language for systems engineering~\cite{sysmlv2} that supports the specification, analysis, design, verification, and validation of complex systems. SysML extends the Unified Modeling Language (UML) with constructs for representing requirements, parametric constraints, and other system-level concerns.
+
+\textbf{Streaming Automatic Speech Recognition (Streaming ASR):} A real-time speech processing technique that transcribes audio continuously as it is received, rather than waiting for the complete audio utterance. This approach enables lower latency in conversational systems by beginning transcription as soon as audio data becomes available, making it ideal for interactive applications with strict latency constraints.
+
+\textbf{Text-to-Speech (TTS) Synthesis:} A technology that converts written text into natural-sounding spoken audio. In the MundoVR context, TTS provides the conversational agent's voice output and is designed to synthesize responses incrementally, allowing the VR client to begin audio playback before the full response is generated, thereby masking synthesis latency.
+
+\textbf{Large Language Models (LLMs):} Deep neural network models trained on large corpora of text data to perform natural language understanding and generation tasks. In MundoVR, LLMs (such as Llama or Mistral) are used to generate contextually appropriate dialogue responses constrained by scenario graphs and pedagogical principles. Quantized variants (INT8 precision) are employed to balance inference speed and model quality.
 
 \subsection{Related Work}
 
@@ -397,7 +401,8 @@ This work makes three primary contributions. First, we provide a comprehensive A
 
 Future work will focus on Implementation and Deployment to validate the architecture under real workload patterns. We also plan a Pedagogical Evaluation via a randomized controlled trial comparing MundoVR to traditional methods. Additionally, we will implement Multilingual Extension with language-specific LLM routing and investigate Edge Computing for offline VR experiences.
 
-The complete SysML model and architectural specifications are available at: \texttt{https://github.com/AzamkhonKh/ai\_sla\_vr}
+The complete SysML model and architectural specifications are available at:\\
+\texttt{https://github.com/AzamkhonKh/ai\_sla\_vr/tree/master/mbse}
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{resources}
