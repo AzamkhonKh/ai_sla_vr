@@ -92,16 +92,19 @@
     }
 }
 
-\title{MundoVR: A Hybrid AI-VR Architecture for Real-Time Gamified Second Language Acquisition}
+\title{A Hybrid AI-VR Architecture for Real-Time Gamified Second Language Acquisition}
 
-\author{Ashley Naka (819029)}
-\email{}
+\author{Ashley Naka}
+\affiliation{\institution{Hochschule Reutlingen} \city{Reutlingen} \country{Germany}}
+\email{Ashley.Naka@Student.Reutlingen-University.DE}
 
-\author{Jennifer Awounou (819021)}
-\email{}
+\author{Jennifer Awounou}
+\affiliation{\institution{Hochschule Reutlingen} \city{Reutlingen} \country{Germany}}
+\email{Jennifer.Awounou@Student.Reutlingen-University.DE}
 
-\author{Azamkhon Khudoyberdiev (819025)}
-\email{}
+\author{Azamkhon Khudoyberdiev}
+\affiliation{\institution{Hochschule Reutlingen} \city{Reutlingen} \country{Germany}}
+\email{Azamkhon.Khudoyberdiev@Student.Reutlingen-University.DE}
 
 \begin{document}
 
@@ -119,29 +122,27 @@ This paper presents MundoVR, a hybrid AI-VR architecture designed to address the
 
 \subsection{Motivation and Context}
 
-Second Language Acquisition (SLA) research consistently demonstrates that authentic conversational practice is crucial for developing fluency \cite{krashen1982principles}. However, traditional Computer-Assisted Language Learning (CALL) systems fail to provide the spontaneous, contextually rich interactions necessary for developing conversational competence. Meanwhile, recent breakthroughs in Large Language Models (LLMs) and automatic speech recognition have created unprecedented opportunities for intelligent, adaptive dialogue systems. Virtual Reality (VR) technology offers unique affordances for language learning: presence, embodiment, and contextual learning. Studies show VR environments improve vocabulary retention by 35-50\% compared to traditional methods \cite{schorr2024arreview}, while reducing learner anxiety through safe, judgment-free practice spaces \cite{cabero2020learning}. The convergence of these technologies creates the possibility of realistic conversational practice systems. However, integrating them poses significant software engineering challenges: real-time AI inference must maintain VR immersion, handle complex natural language understanding within 1.5 seconds, scale to thousands of concurrent users, and remain cost-effective.
+Second Language Acquisition (SLA) research consistently demonstrates that authentic conversational practice is crucial for developing fluency~\cite{krashen1982principles}. However, traditional Computer-Assisted Language Learning (CALL) systems fail to provide the spontaneous, contextually rich interactions necessary for developing conversational competence. Meanwhile, recent breakthroughs in Large Language Models (LLMs) and automatic speech recognition have created unprecedented opportunities for intelligent, adaptive dialogue systems. Virtual Reality (VR) technology offers unique affordances for language learning: presence, embodiment, and contextual learning. Studies show VR environments improve vocabulary retention by 35--50\% compared to traditional methods~\cite{schorr2024arreview}, while reducing learner anxiety through safe, judgment-free practice spaces~\cite{cabero2020learning}. The convergence of these technologies creates the possibility of realistic conversational practice systems. However, integrating them poses significant software engineering challenges: real-time artificial intelligence (AI) inference must maintain VR immersion, handle complex natural language understanding within~1.5 seconds, scale to thousands of concurrent users, and remain cost-effective.
 
 \subsection{Problem Statement}
 
-Current AI-VR language learning systems face three critical limitations. First, cloud-based LLMs introduce 2-5 second delays, breaking VR immersion, while on-device models lack the contextual reasoning for pedagogically sound conversations. Second, GPU-intensive AI processing creates cost barriers, limiting accessibility and deployment scale. Third, generic LLMs generate grammatically correct but pedagogically inappropriate responses, lacking scaffolding, error correction strategies, and adaptive difficulty adjustment aligned with SLA principles.
+Current AI-VR language learning systems face three critical limitations. First, cloud-based LLMs introduce 2--5 second delays, breaking VR immersion, while on-device models lack the contextual reasoning for pedagogically sound conversations. Second, Graphics Processing Unit (GPU)-intensive AI processing creates cost barriers, limiting accessibility and deployment scale. Third, generic LLMs generate grammatically correct but pedagogically inappropriate responses, lacking scaffolding, error correction strategies, and adaptive difficulty adjustment aligned with SLA principles.
 
 \subsection{Research Questions}
 
 \begin{table}[htbp]
 \centering
 \renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\columnwidth}{@{}l l X@{}}
+\begin{tabularx}{\columnwidth}{@{}l X@{}}
 \toprule
-\textbf{ID} & \textbf{Focus} & \textbf{Research Question} \\
+\textbf{ID} & \textbf{Research Question} \\
 \midrule
-\textbf{MRQ} & Hybrid Arch. & How can a hybrid AI-VR system architecture achieve sub-1.5\,s latency, adaptive pedagogy, and cost-efficient scalability? \\
-\textbf{RQ1} & Latency & How can microservice decomposition and hybrid edge-cloud distribution achieve latency targets? \\
-\textbf{RQ2} & AI Integration & What integration strategies enable adaptive, pedagogically-aligned dialogue generation? \\
-\textbf{RQ3} & Interface & How should the VR-backend interface minimize latency while ensuring reliable state synchronization? \\
+\textbf{RQ1} & How can microservice decomposition and hybrid edge-cloud distribution achieve latency targets? \\
+\textbf{RQ2} & What integration strategies enable adaptive, pedagogically-aligned dialogue generation? \\
+\textbf{RQ3} & How should the VR-backend interface minimize latency while ensuring reliable state synchronization? \\
 \bottomrule
 \end{tabularx}
-\caption{Research Questions addressing the core challenges of the MundoVR system.}
-\label{tab:research-questions}
+\caption{Research Questions addressing the core challenges of the MundoVR system.}\label{tab:research-questions}
 \end{table}
 
 \subsection{Contributions}
@@ -152,52 +153,56 @@ This work makes three primary contributions. First, we present a formally specif
 
 \textbf{Hybrid Architecture:} An architectural pattern that strategically distributes computational workloads between edge devices (VR headsets) and cloud services. Lightweight, latency-sensitive operations are processed locally on-device, while computationally intensive tasks (LLM inference, high-accuracy speech processing) are offloaded to cloud infrastructure. This approach balances response time requirements with computational resource constraints.
 
-\textbf{p99 Latency:} The 99th percentile latency metric, meaning 99\% of requests complete within the specified time bound. This metric is more robust than average latency for user experience guarantees, as it accounts for tail latency caused by system variability. For example, p99 $<$ 1.5\,s means that 99 out of 100 user interactions receive responses within 1.5 seconds.
+\textbf{ISO/IEC 25010:} An international standard~\cite{iso25010} for systems and software quality models. It categorizes product quality into eight characteristics, including Performance Efficiency and Reliability, which serve as the framework for classifying our non-functional requirements.
 
-\textbf{SLA (Service Level Agreement):} Performance guarantees defined in terms of measurable metrics such as latency, availability, and throughput. In this work, we use SLA-style targets as design constraints rather than contractual obligations.
+\textbf{ISO/IEC/IEEE 42010:} An international standard~\cite{iso42010} for architecture description of software-intensive systems. It defines the concepts of architecture viewpoints and views used in this paper to structure the system specification.
 
-\textbf{Microservices:} An architectural style that structures an application as a collection of loosely coupled, independently deployable services. Each service implements a specific business capability and can be scaled, updated, and maintained independently.
+\textbf{p99 Latency:} The 99th percentile latency metric, meaning 99\% of requests complete within the specified time bound. This metric is more robust than average latency for user experience guarantees, as it accounts for tail latency caused by system variability\@. For example, p99 $<$~1.5\,s means that 99 out of~100 user interactions receive responses within~1.5 seconds.
+
+\textbf{Service Level Agreement (SLA):} Performance guarantees defined in terms of measurable metrics such as latency, availability, and throughput. In this work, we use service level agreement-style targets as design constraints rather than contractual obligations.
+
+\textbf{SysML v2 (Systems Modeling Language):} The next-generation general-purpose modeling language for systems engineering~\cite{sysmlv2} that supports the specification, analysis, design, verification, and validation of complex systems. SysML extends the Unified Modeling Language (UML) with constructs for representing requirements, parametric constraints, and other system-level concerns.
+
+\subsection{Related Work}
+
+To ground the MundoVR architecture in existing evidence, we conducted a systematic literature review following the PRISMA 2020 guidelines~\cite{prisma2020}. Our search strategy queried five databases (Web of Science, Scopus, ERIC, ACM Digital Library, and PsycINFO) using Boolean combinations of terms related to virtual reality, language learning, and AI integration. From an initial pool of 847 database records and 37 records from other sources, we identified 18 studies meeting our inclusion criteria after removing duplicates and screening for relevance. Figure~\ref{fig:prisma} presents the complete selection process. The included studies inform the following thematic synthesis.
 
 \begin{figure*}[p]
 \thispagestyle{empty}
 \centering
 \vspace*{-1in}
 \includegraphics[height=8.5in]{figures/overview.png}
+\Description{System overview diagram showing SysML viewpoints: system context block definition diagram, requirements with use cases and functional/non-functional requirements, and architecture structure showing VR client, backend microservices, and data layer components.}
 \vspace*{0.2in}
-\caption{MundoVR System Overview: Comprehensive diagram showing use cases, system context, deployment architecture, 3-layer platform structure, and functional/non-functional requirements with platform boundaries.}
-\label{fig:overview}
-\end{figure*}
-
-\section{Related Work}
-
-To ground the MundoVR architecture in existing evidence, we conducted a systematic literature review following the PRISMA 2020 guidelines. Our search strategy queried five databases (Web of Science, Scopus, ERIC, ACM Digital Library, and PsycINFO) using Boolean combinations of terms related to virtual reality, language learning, and AI integration. From an initial pool of 847 database records and 37 records from other sources, we identified 18 studies meeting our inclusion criteria after removing duplicates and screening for relevance. Figure~\ref{fig:prisma} presents the complete selection process. The included studies inform the following thematic synthesis.
+\caption{MundoVR System Overview: Collection of SysML diagrams showing system context (BDD), requirements viewpoint (use cases, functional/non-functional requirements), and structure viewpoint (platform boundaries) without implementation-level details.}\label{fig:overview}
+\end{figure*}%
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=\columnwidth]{figures/prisma.png}
-\caption{PRISMA 2020 flow diagram showing the systematic literature search and selection process.}
-\label{fig:prisma}
-\end{figure}
+\Description{PRISMA 2020 flow diagram showing identification of 847 database records and 37 other sources, screening process resulting in 18 included studies after removing duplicates and applying inclusion criteria.}
+\caption{PRISMA 2020 flow diagram showing the systematic literature search and selection process.}\label{fig:prisma}
+\end{figure}%
 
 \subsection{VR and Immersive Technologies for Language Learning}
 
-Recent systematic reviews validate VR's effectiveness for language acquisition. Schorr et al. (2024) \cite{schorr2024arreview} analyzed 40 studies, finding VR environments improve vocabulary retention by 35-50\% compared to traditional methods through contextual embedding and spatial memory association. Cabero et al. (2020) \cite{cabero2020learning} demonstrated VR reduces learner anxiety by 40\% through anonymity and safe practice spaces, addressing the affective filter hypothesis \cite{krashen1982principles}. Peixoto et al. (2024) \cite{peixoto2024uiivr} compared diegetic versus non-diegetic UI paradigms in immersive VR language learning, providing empirical evidence that interface design significantly affects learning outcomes---aligning with Harrison et al.'s \cite{harrison2007paradigms} three paradigms of HCI (tool use, communication, and experience). Repetto et al. (2021) \cite{repetto2021virtusphere} evaluated immersive VR versus desktop VR for Italian language learning, finding HMD users achieved 28\% higher speaking proficiency scores and 42\% better pronunciation accuracy due to embodied cognition and presence effects. Frontiers in Virtual Reality (2025) \cite{frontiers2025comparison} compared AR versus VR, showing VR superiority for complex conversational scenarios requiring full immersion.
+Recent systematic reviews validate VR's effectiveness for language acquisition. Schorr et~al. (2024)~\cite{schorr2024arreview} analyzed~40 studies, finding VR environments improve vocabulary retention by 35--50\% compared to traditional methods through contextual embedding and spatial memory association. Cabero et~al. (2020)~\cite{cabero2020learning} demonstrated VR reduces learner anxiety by~40\% through anonymity and safe practice spaces, addressing the affective filter hypothesis~\cite{krashen1982principles}. Peixoto et~al. (2024)~\cite{peixoto2024uiivr} compared diegetic versus non-diegetic UI paradigms in immersive VR language learning, providing empirical evidence that interface design significantly affects learning outcomes--aligning with Harrison et~al.\@'s~\cite{harrison2007paradigms} three paradigms of HCI (tool use, communication, and experience). Repetto et~al. (2021)~\cite{repetto2021virtusphere} evaluated immersive VR versus desktop VR for Italian language learning, finding head-mounted display (HMD) users achieved~28\% higher speaking proficiency scores and~42\% better pronunciation accuracy due to embodied cognition and presence effects. Frontiers in Virtual Reality (2025)~\cite{frontiers2025comparison} compared augmented reality (AR) versus VR, showing VR superiority for complex conversational scenarios requiring full immersion.
 
 \subsection{AI Integration in Educational VR}
 
-The integration of conversational AI into VR learning environments represents an emerging research area. Adithya et al. (2024) \cite{adithya2024vrtutoring} developed LLM-based AI tutoring in VR, achieving 85\% student satisfaction but reporting latency issues limiting immersion. Their architecture used cloud-only processing without edge optimization. Johnson et al. (2023) \cite{johnson2023ai} implemented LLM-driven NPCs in VR language scenarios, demonstrating adaptive dialogue generation but facing scalability challenges. IEEE VRW (2025) \cite{ieee2025japanese} developed parallel AI-driven Japanese learning in VR with contextualized conversations, reporting 1.8\,s average latency and limited cost analysis. Existing work lacks systematic architecture design addressing the latency-scalability-cost trade-off triangle. No prior work provides formal architectural specifications or demonstrates cost-effective scaling beyond 100 concurrent users.
+The integration of conversational AI into VR learning environments represents an emerging research area. Adithya et~al. (2024)~\cite{adithya2024vrtutoring} developed LLM-based AI tutoring in VR, achieving~85\% student satisfaction but reporting latency issues limiting immersion. Their architecture used cloud-only processing without edge optimization. Johnson et~al. (2023)~\cite{johnson2023ai} implemented LLM-driven non-player characters (NPCs) in VR language scenarios, demonstrating adaptive dialogue generation but facing scalability challenges. IEEE Virtual Reality Workshop (VRW, 2025)~\cite{ieee2025japanese} developed parallel AI-driven Japanese learning in VR with contextualized conversations, reporting~1.8\,s average latency and limited cost analysis. Existing work lacks systematic architecture design addressing the latency--scalability--cost trade-off triangle. No prior work provides formal architectural specifications or demonstrates cost-effective scaling beyond~100 concurrent users.
 
 \subsection{Conversational AI and Chatbots in Education}
 
-Kuhail et al. (2023) \cite{kuhail2023chatbots} systematically reviewed 36 educational chatbot implementations, finding personalized, context-aware systems improved learning outcomes by 23-35\%. However, most systems used rule-based dialogue management, lacking the flexibility of modern LLMs. Huang et al. (2022) \cite{huang2022chatbots} evaluated LLMs for language learning, demonstrating pedagogical limitations such as generic responses without scaffolding, lack of error correction strategies, and absence of adaptive difficulty adjustment. They recommend constrained generation using scenario graphs---an approach we adopt. Velazquez-Garcia et al. (2024) \cite{velazquez2024gamification} integrated AI chatbots into gamified learning platforms, achieving 41\% engagement increase through adaptive content delivery and immediate feedback loops. Their work informs our reward system design but lacks VR integration and real-time latency constraints.
+Kuhail et~al. (2023)~\cite{kuhail2023chatbots} systematically reviewed~36 educational chatbot implementations, finding personalized, context-aware systems improved learning outcomes by 23--35\%. However, most systems used rule-based dialogue management, lacking the flexibility of modern LLMs. Huang et~al. (2022)~\cite{huang2022chatbots} evaluated LLMs for language learning, demonstrating pedagogical limitations such as generic responses without scaffolding, lack of error correction strategies, and absence of adaptive difficulty adjustment. They recommend constrained generation using scenario graphs--an approach we adopt. Velazquez-Garcia et~al. (2024)~\cite{velazquez2024gamification} integrated AI chatbots into gamified learning platforms, achieving~41\% engagement increase through adaptive content delivery and immediate feedback loops. Their work informs our reward system design but lacks VR integration and real-time latency constraints.
 
 \subsection{Second Language Acquisition Theory}
 
-Our architecture design is grounded in established Second Language Acquisition (SLA) theories. According to Krashen's Comprehensible Input (i+1) \cite{krashen1982principles}, learners acquire language through input slightly above their current level; we implement this via adaptive difficulty adjustment using performance metrics. Schmidt's Noticing Hypothesis \cite{schmidt1990consciousness} emphasizes that conscious attention to linguistic forms is necessary for acquisition; our pronunciation feedback system highlights phoneme-level errors to facilitate noticing. Swain's Output Hypothesis \cite{swain2005output} suggests language production drives learning through noticing gaps and hypothesis testing; our system prioritizes speaking practice with phoneme-level pronunciation feedback. Long's Interaction Hypothesis \cite{long1996interaction} emphasizes negotiation of meaning; our LLM-driven AI characters provide clarification requests and confirmation checks. Finally, Task-Based Language Teaching \cite{ellis2003task} promotes acquisition through authentic communicative tasks, which we structure as goal-oriented scenarios rather than decontextualized drills.
+Our architecture design is grounded in established Second Language Acquisition (SLA) theories. According to Krashen's Comprehensible Input (i+1)~\cite{krashen1982principles}, learners acquire language through input slightly above their current level; we implement this via adaptive difficulty adjustment using performance metrics. Schmidt's Noticing Hypothesis~\cite{schmidt1990consciousness} emphasizes that conscious attention to linguistic forms is necessary for acquisition; our pronunciation feedback system highlights phoneme-level errors to facilitate noticing. Swain's Output Hypothesis~\cite{swain2005output} suggests language production drives learning through noticing gaps and hypothesis testing; our system prioritizes speaking practice with phoneme-level pronunciation feedback. Long's Interaction Hypothesis~\cite{long1996interaction} emphasizes negotiation of meaning; our LLM-driven AI characters provide clarification requests and confirmation checks. Finally, Task-Based Language Teaching~\cite{ellis2003task} promotes acquisition through authentic communicative tasks, which we structure as goal-oriented scenarios rather than decontextualized drills.
 
 \section{Methodology}
 
-This research follows the Design Science Research (DSR) methodology, which focuses on the development and evaluation of innovative artifacts to solve practical problems. The artifact in this study is the MundoVR hybrid architecture. Our approach consists of three phases: Problem Identification, which analyzes latency and cost bottlenecks in existing AI-VR educational systems; Artifact Design, which formally specifies a hybrid architecture using SysML 2.0 to address identified trade-offs; and Theoretical Evaluation, which provides analytical performance estimation against latency, scalability, and cost requirements. We adopt a multi-view architectural specification methodology aligned with ISO/IEC/IEEE 42010. SysML 2.0 diagrams specify system boundaries, microservice decomposition, and resource constraints. The architecture is modeled across four viewpoints: Requirements, Structure, Behavior, and Parametric.
+This research follows the Design Science Research (DSR) methodology~\cite{peffers2007}, which focuses on the development and evaluation of innovative artifacts to solve practical problems. The artifact in this study is the MundoVR hybrid architecture. Our approach consists of three phases: Problem Identification, which analyzes latency and cost bottlenecks in existing AI--VR educational systems; Artifact Design, which formally specifies a hybrid architecture using SysML~2.0 to address identified trade-offs; and Theoretical Evaluation, which provides analytical performance estimation against latency, scalability, and cost requirements. We adopt a multi-view architectural specification methodology aligned with ISO/IEC/IEEE~42010~\cite{iso42010}. SysML~2.0 diagrams specify system boundaries, microservice decomposition, and resource constraints. The architecture is modeled across four viewpoints: Requirements, Structure, Behavior, and Parametric.
 
 \section{Architectural Drivers and Constraints}
 
@@ -209,7 +214,7 @@ MundoVR provides a gamified, immersive environment for conversational practice. 
 
 \subsection{The Latency Budget (Constraint for RQ1)}
 
-The most critical constraint is the Motion-to-Photon Latency required for VR immersion. Industry standards establish that visual rendering must occur within 20\,ms to prevent simulator sickness and maintain presence \cite{jerald2015vr}. Conversational interactions have a slightly looser but still strict budget derived from human-computer interaction research. Studies on conversational systems demonstrate that response delays exceeding 2\,s significantly degrade user experience, breaking the ``illusion of presence'' and increasing cognitive load \cite{sweller1988cognitive}. Based on these empirical findings from VR and HCI literature, we establish a research-informed design target of 1.5\,s (p99) for total conversational latency. This target is decomposed into component-level budgets based on typical processing times reported in speech and language processing literature: Network RTT (100\,ms), STT Processing (300\,ms), LLM Inference (800\,ms), TTS Synthesis (200\,ms), and Client Buffer (100\,ms). Since standard cloud LLM APIs typically exhibit latencies of 2--5\,s, the architecture must be designed around optimized, self-hosted models or specialized inference engines to achieve the 800\,ms inference target.
+The most critical constraint is the Motion-to-Photon Latency required for VR immersion. Industry standards establish that visual rendering must occur within 20\,ms to prevent simulator sickness and maintain presence \cite{jerald2015vr}. Conversational interactions have a slightly looser but still strict budget derived from human-computer interaction research. Studies on conversational systems demonstrate that response delays exceeding 2\,s significantly degrade user experience, breaking the ``illusion of presence'' and increasing cognitive load \cite{sweller1988cognitive}. Based on these empirical findings from VR and HCI literature, we establish a research-informed design target of 1.5\,s (p99) for total conversational latency. This target is decomposed into component-level budgets based on typical processing times reported in speech and language processing literature: Network round-trip time (RTT, 100\,ms), STT Processing (300\,ms), LLM Inference (800\,ms), TTS Synthesis (200\,ms), and Client Buffer (100\,ms). Since standard cloud LLM application programming interfaces (APIs) typically exhibit latencies of 2--5\,s, the architecture must be designed around optimized, self-hosted models or specialized inference engines to achieve the 800\,ms inference target.
 
 \subsection{Scalability and Cost Constraints}
 
@@ -217,7 +222,7 @@ The system must support 10,000 concurrent users. To remain commercially viable f
 
 \subsection{Requirements Specification}
 
-The formal requirements derived from these drivers are modeled in SysML. We classify these requirements into Functional Requirements (FR) and Non-Functional Requirements (NFR). Non-functional requirements are categorized according to the ISO/IEC 25010 quality model, specifically focusing on Performance Efficiency (Time Behaviour) and Reliability (Availability). The complete functional requirements specification is documented in the system's SysML model, including speech input processing, dialogue generation, multimodal output, pronunciation analysis, adaptive progression, learning support, data persistence, and identity management. Figure~\ref{fig:overview} presents the comprehensive system overview including these requirements with explicit platform boundaries.
+The formal requirements derived from these drivers are modeled in SysML. We classify these requirements into Functional Requirements (FR) and Non-Functional Requirements (NFR). Non-functional requirements are categorized according to the ISO/IEC 25010 quality model~\cite{iso25010}, specifically focusing on Performance Efficiency (Time Behaviour) and Reliability (Availability). The complete functional requirements specification is documented in the system's SysML model, including speech input processing, dialogue generation, multimodal output, pronunciation analysis, adaptive progression, learning support, data persistence, and identity management. Figure~\ref{fig:overview} presents the comprehensive system overview using SysML requirement and structure viewpoints, including functional and non-functional requirements with explicit platform boundaries, without introducing implementation-specific components.
 
 \section{System Architecture}
 
@@ -229,53 +234,51 @@ The system context shows MundoVR's external relationships. The VR Headset serves
 
 \subsection{Strategy 1: Edge-Cloud Distribution (RQ3)}
 
-The first architectural decision (ADR-001) is to split the processing pipeline between the VR headset (Edge) and the Backend (Cloud). This approach leverages the computing power of the VR headset to mask latency for immediate interactions. The VR client handles all immediate feedback loops (Latency $<$ 200\,ms). As soon as the user starts speaking, lightweight processing is performed locally using an embedded AI SDK. This handles Voice Activity Detection (VAD), Wake Word detection, Lip Sync rendering, and simple NLU intents. By processing VAD locally, we prevent streaming silence to the cloud, reducing bandwidth usage by $\sim$40\%, and allow simple interactions to be processed in less than 200\,ms. The cloud handles the ``heavy lifting'' of intelligence (Latency $<$ 1.5\,s): high-accuracy Speech Recognition (STT), complex Dialogue Generation (LLM), and Speech Synthesis (TTS).
+The first architectural decision (Architecture Decision Record, ADR-001) is to split the processing pipeline between the VR headset (Edge) and the Backend (Cloud). This approach leverages the computing power of the VR headset to mask latency for immediate interactions. The VR client handles all immediate feedback loops (Latency $<$ 200\,ms). As soon as the user starts speaking, lightweight processing is performed locally using an embedded AI software development kit (SDK). This handles Voice Activity Detection (VAD), Wake Word detection, Lip Sync rendering, and simple natural language understanding (NLU) intents. By processing VAD locally, we prevent streaming silence to the cloud, reducing bandwidth usage by $\sim$40\%, and allow simple interactions to be processed in less than 200\,ms. The cloud handles the ``heavy lifting'' of intelligence (Latency $<$ 1.5\,s): high-accuracy Speech Recognition (STT), complex Dialogue Generation (LLM), and Speech Synthesis (TTS).
 
 \subsection{Strategy 2: Microservice Decomposition}
 
-To achieve the scalability target of 10,000 users (RQ1), we decompose the backend into services with distinct scaling characteristics. The ``Brain'' (GPU-Bound) services—STT, Conversation, and TTS—are compute-intensive. They are deployed on GPU nodes and scaled based on Queue Depth. The ``Nervous System'' (I/O-Bound) services—Session Manager, API Gateway, and Scenario Manager—are lightweight. They are deployed on standard CPU nodes and scaled based on CPU Utilization. This separation allows us to scale the expensive GPU resources only when necessary, while the cheap CPU resources handle the massive concurrency of maintaining 10,000 open WebSocket connections.
+To achieve the scalability target of 10,000 users (RQ1), we decompose the backend into services with distinct scaling characteristics. The ``Brain'' (GPU-Bound) services—STT, Conversation, and TTS—are compute-intensive. They are deployed on GPU nodes and scaled based on Queue Depth. The ``Nervous System'' input/output (I/O)-bound services—Session Manager, API Gateway, and Scenario Manager—are lightweight. They are deployed on standard central processing unit (CPU) nodes and scaled based on CPU utilization. This separation allows us to scale the expensive GPU resources only when necessary, while the cheap CPU resources handle the massive concurrency of maintaining 10,000 open WebSocket connections.
 
 \subsection{Optimizing the Critical Path (RQ3)}
 
 To meet the 1.5\,s latency budget, the architecture employs Parallel Execution and Intelligent Streaming. While the STT service is transcribing the audio, the Session Manager simultaneously retrieves the user's profile and conversation history from the cache. The Scenario Manager pre-loads the likely next branches of the conversation graph, ensuring the prompt is ready the moment the text arrives. The LLM and TTS services generate the audio response in a continuous stream. The VR client begins playing the audio as soon as the first packets are received, without waiting for the full phrase to be generated. This effectively masks network and AI computation latency.
 
-\begin{table}[htbp]
+\begin{table*}[htbp]
 \centering
-\caption{Backend Microservices}
-\label{tab:microservices}
-\begin{tabularx}{\columnwidth}{@{}l X@{}}
+\caption{Backend Microservices (Core platform services highlighted in bold)}\label{tab:microservices}
+\begin{tabularx}{\textwidth}{@{}l X@{}}
 \toprule
 \textbf{Service} & \textbf{Responsibility} \\
 \midrule
-API Gateway & Entry point, authentication, rate limiting \\
-Session Mgmt & Session state, synchronization \\
-Speech-to-Text & ASR integration \\
-Conversation & Dialogue generation (LLM) \\
+API (Application Programming Interface) Gateway & Entry point, authentication, rate limiting \\
+\textbf{Session Management} & \textbf{Session state, synchronization} \\
+Speech-to-Text & Automatic Speech Recognition (ASR) integration \\
+\textbf{Conversation Service} & \textbf{Dialogue generation (LLM)} \\
 Text-to-Speech & TTS synthesis \\
 Pronunciation & Phoneme analysis \\
-Scenario Mgmt & Role-play scenarios, branching \\
-Analytics & Event aggregation, metrics \\
+Scenario Management & Role-play scenarios, branching \\
+\textbf{Analytics Service} & \textbf{Event aggregation, metrics} \\
 Notification & Multi-channel notifications \\
-User Mgmt & Profiles, authentication \\
+\textbf{User Manager} & \textbf{Profiles, authentication} \\
 \bottomrule
 \end{tabularx}
-\end{table}
+\end{table*}
 
 \begin{figure*}[htbp]
 \centering
 \includegraphics[width=0.95\textwidth]{figures/activity.png}
-\caption{MundoVR Activity Diagrams: Detailed behavioral flows showing internal block diagram of game components, end-to-end session workflow, task creation and assignment logic, assessment and feedback mechanisms, and real-time NPC conversation interaction patterns.}
-\label{fig:activity}
-\end{figure*}
+\Description{Behavioral viewpoint showing activity diagrams for end-to-end session workflow including user login, session initialization, task selection, NPC interaction with real-time speech processing, and assessment feedback loops.}
+\caption{MundoVR Behavioral Viewpoint: Collection of SysML activity and interaction diagrams showing end-to-end session workflow, task assignment logic, assessment and feedback mechanisms, and NPC conversation patterns at the platform architecture level (implementation-agnostic).}\label{fig:activity}
+\end{figure*}%
 
 \subsection{Deployment Architecture}
 
-The deployment architecture uses containerized workloads with orchestration. The architecture defines three node pools: a CPU Node Pool hosts I/O-bound services (API Gateway, Session Manager, Scenario Manager) with horizontal autoscaling (Horizontal Pod Autoscaling - HPA) based on CPU utilization; a GPU Node Pool hosts compute-intensive AI services (STT, Conversation, TTS) with autoscaling based on queue depth; and a Database Node Pool provides persistent storage through a relational database for transactional data, a key-value store for session caching, and a vector database for embeddings used in semantic search. All services are deployed behind an ingress controller that handles TLS termination and protocol upgrade for real-time communication.
+The deployment architecture uses containerized workloads with orchestration. The architecture defines three node pools: a CPU Node Pool hosts I/O-bound services (API Gateway, Session Manager, Scenario Manager) with horizontal autoscaling (Horizontal Pod Autoscaling, HPA) based on CPU utilization; a GPU Node Pool hosts compute-intensive AI services (STT, Conversation, TTS) with autoscaling based on queue depth; and a Database (DB) Node Pool provides persistent storage through a relational database for transactional data, a key-value store for session caching, and a vector database for embeddings used in semantic search. All services are deployed behind an ingress controller that handles Transport Layer Security (TLS) termination and protocol upgrade for real-time communication.
 
 \begin{table}[htbp]
 \centering
-\caption{Deployment Configuration}
-\label{tab:deployment}
+\caption{Deployment Configuration}\label{tab:deployment}
 \begin{tabularx}{\columnwidth}{@{}l l X@{}}
 \toprule
 \textbf{Component} & \textbf{Host} & \textbf{Scaling Policy} \\
@@ -285,8 +288,8 @@ Session Manager & CPU Node & Autoscaling: connections $>$ 1000 \\
 STT Service & GPU Node & Autoscaling: queue depth $>$ 10 \\
 Conversation (LLM) & GPU Node & Autoscaling: queue depth $>$ 5 \\
 TTS Service & GPU Node & Autoscaling: queue depth $>$ 10 \\
-Relational DB & DB Node & Vertical scaling \\
-Cache Store & DB Node & Cluster mode \\
+Relational Database (DB) & Database (DB) Node & Vertical scaling \\
+Cache Store & Database (DB) Node & Cluster mode \\
 \bottomrule
 \end{tabularx}
 \end{table}
@@ -297,13 +300,12 @@ Table~\ref{tab:techstack} summarizes the architectural components across system 
 
 \begin{table}[htbp]
 \centering
-\caption{Architectural Components}
-\label{tab:techstack}
+\caption{Architectural Components}\label{tab:techstack}
 \begin{tabularx}{\columnwidth}{@{}l X@{}}
 \toprule
 \textbf{Layer} & \textbf{Components} \\
 \midrule
-Backend & Microservices, RPC, persistent connections \\
+Backend & Microservices, remote procedure call (RPC), persistent connections \\
 AI Services & Streaming ASR, TTS synthesis, LLMs \\
 Data & Relational DB, key-value cache, vector DB \\
 Infrastructure & Containerization, orchestration \\
@@ -318,8 +320,7 @@ Table~\ref{tab:adr} summarizes the key architectural decision using a concise AD
 
 \begin{table}[htbp]
 \centering
-\caption{ADR-001: Hybrid Edge-Cloud Architecture}
-\label{tab:adr}
+\caption{ADR-001: Hybrid Edge-Cloud Architecture}\label{tab:adr}
 \begin{tabularx}{\columnwidth}{@{}l X@{}}
 \toprule
 \textbf{Field} & \textbf{Description} \\
@@ -333,32 +334,28 @@ Consequences & Target p99 latency 1.2--1.5\,s; requires stable network; demands 
 \end{tabularx}
 \end{table}
 
-\section{AI Integration Strategy for Adaptive Dialogue (RQ2)}
-\label{sec:rq2}
+\section{AI Integration Strategy for Adaptive Dialogue (RQ2)}\label{sec:rq2}
 
-To answer our second research question regarding integration strategies for adaptive dialogue, we designed and specified a hybrid, service-oriented integration strategy. This approach addresses the core conflict between the non-functional requirements of two-tier latency and cost efficiency, and the functional requirements for high-fidelity, adaptive AI interaction.
+To answer our second research question regarding integration strategies for adaptive dialogue, we designed and specified a hybrid, service-oriented integration strategy\@. This approach addresses the core conflict between the non-functional requirements of two-tier latency and cost efficiency, and the functional requirements for high-fidelity, adaptive AI interaction.
 
-\subsection{The Hybrid AI Integration Model (RQ2)}
-\label{sec:hybrid_model}
+\subsection{The Hybrid AI Integration Model (RQ2)}\label{sec:hybrid_model}
 
 Our integration strategy is founded on a hybrid processing model that balances on-device and cloud computation. This architecture is defined by two distinct processing loops that run in parallel. Loop 1, the Immersion Loop ($<$200\,ms), handles latency-critical, simple interactions like greetings or ``yes/no'' answers by leveraging a lightweight on-device AI SDK to trigger pre-cached audio responses. This local processing meets our sub-200\,ms latency target, preserving VR immersion. Loop 2, the Quality Loop ($<$1.5\,s), handles complex conversational tasks. The user's speech is simultaneously streamed to high-performance cloud services for high-accuracy streaming STT, phoneme-level pronunciation analysis, complex dialogue generation, adaptive difficulty, and natural TTS. This loop is engineered to complete within our 1.5-second target.
 
-\subsection{Justification: Architectural Trade-offs}
-\label{sec:tradeoffs}
+\subsection{Justification: Architectural Trade-offs}\label{sec:tradeoffs}
 
-The choice of a hybrid architecture is a deliberate compromise, designed to resolve the competing non-functional requirements. We evaluated this model against the two primary alternatives. A Cloud-Centric Model fails our primary latency requirement (NFR1) because even simple feedback would incur a full network round-trip, far exceeding the sub-200\,ms threshold required to maintain VR immersion. An On-Device-Centric Model fails our functional requirements because the computational constraints of current mobile VR hardware make it unfeasible to run the large-scale models required for high-accuracy STT, complex dialogue generation, and natural TTS. Therefore, our hybrid integration strategy is the only specified solution that satisfies all competing requirements. It uses on-device processing to satisfy the immediate immersion loop, while strategically delegating complex tasks to the cloud to ensure pedagogical quality.
+The choice of a hybrid architecture is a deliberate compromise, designed to resolve the competing non-functional requirements\@. We evaluated this model against the two primary alternatives. A Cloud-Centric Model fails our primary latency requirement (NFR1) because even simple feedback would incur a full network round-trip, far exceeding the sub-200\,ms threshold required to maintain VR immersion. An On-Device-Centric Model fails our functional requirements because the computational constraints of current mobile VR hardware make it unfeasible to run the large-scale models required for high-accuracy STT, complex dialogue generation, and natural TTS\@. Therefore, our hybrid integration strategy is the only specified solution that satisfies all competing requirements\@. It uses on-device processing to satisfy the immediate immersion loop, while strategically delegating complex tasks to the cloud to ensure pedagogical quality.
 
-\subsection{Enabling Pedagogically-Aligned Dialogue (RQ2)}
-\label{sec:pedagogy}
+\subsection{Enabling Pedagogically-Aligned Dialogue (RQ2)}\label{sec:pedagogy}
 
 Our integration strategy is driven by pedagogical requirements derived from Second Language Acquisition (SLA) theory. The integration of AI systems is fundamentally driven by three pedagogical objectives that form the conversational loop. First, Goal-Oriented Conversation ensures the conversational AI is not a generic chatbot but is constrained by scenario graphs aligned with specific user goals and pedagogical principles. This structured approach ensures that the conversation remains focused on the learning objective. Second, Adaptive Difficulty implements Krashen's i+1 hypothesis. The system is designed to be dynamically adaptive, adjusting difficulty based on the learner's profile and progress to maximize learning potential without overwhelming the student. Third, the STT-TTS Interaction Loop supports the Output Hypothesis. The TTS provides natural, prosodic output, while the STT service performs phoneme-level pronunciation analysis on the student's speech, generating data for immediate, actionable feedback.
 
 \begin{figure}[htbp]
     \centering
     \includegraphics[width=\columnwidth]{figures/figure10_pedagogical_loop.png}
-    \caption{The Pedagogical Feedback Loop, illustrating how user input is processed for both conversation and error correction.}
-    \label{fig:pedagogical_loop}
-\end{figure}
+    \Description{Pedagogical feedback loop diagram showing user speech input flowing to STT service for transcription, Conversation Engine for response generation, TTS for audio synthesis, and parallel pronunciation analysis for error correction feedback.}
+    \caption{The Pedagogical Feedback Loop, illustrating how user input is processed for both conversation and error correction.}\label{fig:pedagogical_loop}
+\end{figure}%
 
 \section{Theoretical Analysis}
 
@@ -366,7 +363,7 @@ This section provides theoretical analysis demonstrating how the proposed archit
 
 \subsection{Latency Budget Analysis (RQ1)}
 
-Based on published benchmarks for similar AI processing pipelines and the architectural design, we derive component-level latency targets. The research-informed budget allocates STT processing at approximately 300--400\,ms (based on streaming ASR benchmarks), LLM inference at 700--800\,ms (based on quantized model performance studies), TTS synthesis at 150--250\,ms (based on neural TTS literature), and network overhead at 50--100\,ms (typical for CDN-optimized connections). While the sequential sum of these upper bounds (1.55\,s) slightly exceeds the target, the architecture is designed with aggressive pipelining: TTS synthesis can begin streaming audio to the client before the full LLM response is generated. This theoretical decomposition, grounded in empirical AI system performance data, demonstrates that the architecture can feasibly achieve p99 latency under 1.5\,s. The Parallel Execution Strategy is designed to hide the latency of database lookups and context retrieval by overlapping these operations with STT processing.
+Based on published benchmarks for similar AI processing pipelines and the architectural design, we derive component-level latency targets. The research-informed budget allocates STT processing at approximately 300--400\,ms (based on streaming ASR benchmarks), LLM inference at 700--800\,ms (based on quantized model performance studies), TTS synthesis at 150--250\,ms (based on neural TTS literature), and network overhead at 50--100\,ms (typical for content delivery network (CDN)-optimized connections). While the sequential sum of these upper bounds (1.55\,s) slightly exceeds the target, the architecture is designed with aggressive pipelining: TTS synthesis can begin streaming audio to the client before the full LLM response is generated\@. This theoretical decomposition, grounded in empirical AI system performance data, demonstrates that the architecture can feasibly achieve p99 latency under~1.5\,s\@. The Parallel Execution Strategy is designed to hide the latency of database lookups and context retrieval by overlapping these operations with STT processing.
 
 \subsection{Scalability Analysis (RQ1)}
 
@@ -400,7 +397,7 @@ This work makes three primary contributions. First, we provide a comprehensive A
 
 Future work will focus on Implementation and Deployment to validate the architecture under real workload patterns. We also plan a Pedagogical Evaluation via a randomized controlled trial comparing MundoVR to traditional methods. Additionally, we will implement Multilingual Extension with language-specific LLM routing and investigate Edge Computing for offline VR experiences.
 
-The complete SysML model and architectural specifications are available at: \texttt{https://github.com/mundovr/architecture}
+The complete SysML model and architectural specifications are available at: \texttt{https://github.com/AzamkhonKh/ai\_sla\_vr}
 
 \bibliographystyle{ACM-Reference-Format}
 \bibliography{resources}
